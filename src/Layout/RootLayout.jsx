@@ -1,4 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
+import Navbar from "../Pages/CommonPage/Navbar";
+import Footer from "../Pages/CommonPage/Footer";
 
 const RootLayout = () => {
   const location = useLocation();
@@ -7,9 +9,9 @@ const RootLayout = () => {
   location.pathname.includes("signup");
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
