@@ -19,7 +19,7 @@ const ManageMember = () => {
 
   //   make Admin Handler
   const handleMakeAdmin = (user) => {
-    axiosSecure.patch(`/users/member/${user._id}`).then((res) => {
+    axiosSecure.patch(`/users/member/${user.id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();

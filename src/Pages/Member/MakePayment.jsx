@@ -37,13 +37,14 @@ const MakePayment = () => {
     const discountRent = rent?.max_rent - rent?.max_rent * (discount / 100);
     const paymentsDate = paymentDate.toISOString().split("T")[0];
     const formData = { ...data, discountRent, discount, paymentsDate };
-   
+    // console.log("signup data", data);
     <DatePicker
       selected={paymentDate}
       onChange={(date) => setPaymentDate(date)}
       dateFormat="yyyy-MM-dd"
     />;
     axiosSecure.post("/payments", formData).then((res) => {
+     
       if (res.data.insertedId) {
         reset();
         Swal.fire({

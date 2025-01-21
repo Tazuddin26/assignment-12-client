@@ -1,12 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../Hook/useAuth";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
-import { RiCheckDoubleFill } from "react-icons/ri";
 import { GrDocumentUpdate } from "react-icons/gr";
-import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { LuDelete } from "react-icons/lu";
 import Swal from "sweetalert2";
-import { useState } from "react";
 
 const AgreementRequest = () => {
   const { user } = UseAuth();
@@ -20,7 +17,7 @@ const AgreementRequest = () => {
       return res.data;
     },
   });
-  const [removeFromUi, setRemoveFromUi] = useState([agreements]);
+
   const handleRequestAccept = (id, user) => {
     axiosSecure.patch(`/agreements/${id}`, { action: "accept" }).then((res) => {
       console.log(res.data);
