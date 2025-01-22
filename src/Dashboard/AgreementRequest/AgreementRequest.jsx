@@ -4,19 +4,21 @@ import UseAxiosSecure from "../../Hook/useAxiosSecure";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { LuDelete } from "react-icons/lu";
 import Swal from "sweetalert2";
+import UseAllAgreements from "../../Hook/useAllAgreements";
 
 const AgreementRequest = () => {
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
+  const [agreements, refetch] = UseAllAgreements();
 
-  const { data: agreements = [], refetch } = useQuery({
-    queryKey: ["agreements"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/allAgreements");
-      console.log("all agreement data", res.data);
-      return res.data;
-    },
-  });
+  // const { data: agreements = [], refetch } = useQuery({
+  //   queryKey: ["agreements"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get("/allAgreements");
+  //     console.log("all agreement data", res.data);
+  //     return res.data;
+  //   },
+  // });
 
   const handleRequestAccept = (id, user) => {
     axiosSecure.patch(`/agreements/${id}`, { action: "accept" }).then((res) => {

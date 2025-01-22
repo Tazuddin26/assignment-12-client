@@ -105,9 +105,11 @@ export const router = createBrowserRouter([
         element: <AgreementRequest />,
       },
       {
-        path:'manageCoupons',
-        element: <ManageCoupons/>
-      }
+        path: "manageCoupons",
+        element: <ManageCoupons />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5100/couponUpdate/${params.id}`),
+      },
     ],
   },
 ]);

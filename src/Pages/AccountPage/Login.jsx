@@ -56,7 +56,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full my-10 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl shadow-gray-700">
+    <div className="flex w-full my-10 mt-40 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
       <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/k0ZGmmR/img1.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 ">
@@ -124,17 +124,17 @@ const Login = () => {
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-6 py-3 btn btn-outline">
+            <button className="w-full text-xl font-abel btn hover:text-white btn-success">
               Sign In
             </button>
           </div>
 
           <div className="flex items-center justify-between mt-4">
-            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            <span className="w-1/5 border-b dark:border-green-600 md:w-1/4"></span>
 
             <Link
               to="/signup"
-              className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
+              className="text-sm text-gray-500 uppercase dark:text-gray-600 hover:underline "
             >
               or sign up
             </Link>

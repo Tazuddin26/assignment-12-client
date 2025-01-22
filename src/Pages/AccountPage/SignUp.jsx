@@ -5,50 +5,65 @@ import UseAuth from "../../Hook/useAuth";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
-
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const SignUp = () => {
   const { createSignUpUser, updateUserProfile } = UseAuth();
   const axiosPublic = UseAxiosPublic();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("signup data", data);
-    createSignUpUser(data.email, data.password).then((res) => {
-      const registerUser = res.user;
-      console.log("signup user", registerUser);
-      updateUserProfile(data.username, data.image)
-        .then(() => {
-          const userInformation = {
-            name: data.username,
-            email: registerUser.email,
-          };
-          axiosPublic.post("/users", userInformation).then((res) => {
-            if (res.data.insertedId) {
-              console.log("user added to the database");
-              reset();
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User created successfully.",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              navigate("/");
-            }
+    // const imageFile = { image: data.image[0] };
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    try {
+      const res = await axiosPublic.post(image_hosting_api, formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+      if (res.data.success) {
+        const imageUrl = res.data.data.display_url;
+
+        console.log(res.data.success);
+
+        const createUser = await createSignUpUser(data.email, data.password);
+        const registerUser = createUser.user;
+        console.log("signup user", registerUser);
+        await updateUserProfile(data.username, imageUrl);
+
+        const userInformation = {
+          name: data.username,
+          email: registerUser.email,
+          image: imageUrl,
+        };
+        const postRes = await axiosPublic.post("/users", userInformation);
+        if (postRes.data.insertedId) {
+          console.log("user added to the database");
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
           });
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    });
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error("Error during to signup:", error);
+    }
   };
   return (
-    <div className="flex w-full my-10 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl shadow-gray-700">
+    <div className="flex w-full my-10 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
       <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/8zMxgRR/img2.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
@@ -60,7 +75,7 @@ const SignUp = () => {
               <p className="font-abel text-2xl ">Dream Rent</p>
             </div>
           </div>
-          <div className="relative flex items-center mt-8">
+          <div className="relative items-center mt-8">
             <span className="absolute">
               <FiUser size={24} className="mx-3 text-gray-300 " />
             </span>
@@ -86,33 +101,33 @@ const SignUp = () => {
             <input
               {...register("image", { required: true })}
               id="dropzone-file"
-              type="text"
+              type="file"
               name="image"
               required
-              className=""
+              className="hidden"
             />
             {errors.image && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-red-500 ">This field is required</span>
             )}
           </label>
           <div className="mt-4">
-            <div className="flex items-center ">
+            <div className="  items-center ">
               <input
                 {...register("email", { required: true })}
                 type="email"
                 name="email"
-                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:text-gray-300  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:text-gray-700  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Email Address"
                 required
               />
               {errors.email && (
-                <span className="text-red-500">This field is required</span>
+                <span className="text-red-500 ">This field is required</span>
               )}
             </div>
           </div>
 
           <div className="mt-4">
-            <div className="flex items-center">
+            <div className="items-center">
               <input
                 {...register("password", {
                   required: true,

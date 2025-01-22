@@ -5,11 +5,15 @@ import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
 
 const ManageCoupons = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const axiosSecure = UseAxiosSecure();
   const [createDate, setCreateDate] = useState(new Date());
+  const { code, discount, apartmentNo, validDate, description, _id } =
+    useLoaderData();
   const {
     data: coupons = [],
     refetch,
@@ -78,7 +82,33 @@ const ManageCoupons = () => {
       }
     });
   };
-
+  const handleUpateCoupon = async (data) => {
+    console.log("update", data._id);
+    const updateCoupon = {
+      code: data.code,
+      discount: data.discount,
+      apartmentNo: data.apartmentNo,
+      validDate: data.validDate,
+      description: data.description,
+    };
+    console.log("data", updateCoupon);
+    const couponRes = await axiosSecure.patch(
+      `/updateCoupon/${_id}`,
+      updateCoupon
+    );
+    console.log(couponRes.id);
+    if (couponRes.data.modifiedCount > 0) {
+      // reset();
+      //Show success PopUp
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${data.name} is Updated to the Coupon`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -205,7 +235,15 @@ const ManageCoupons = () => {
                               <FaTrashAlt size={16} />
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            {/* <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                <FaEdit size={20} />
+                              </button> */}
+                            <button
+                              onClick={() => {
+                                setOpen(true);
+                              }}
+                              className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
+                            >
                               <FaEdit size={20} />
                             </button>
                           </div>
@@ -332,6 +370,136 @@ const ManageCoupons = () => {
                     <button
                       type="button"
                       onClick={() => setIsOpen(false)}
+                      className="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-rose-600 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      type="submit"
+                      className="w-full px-4 py-2 mt-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-700 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Edit Coupon */}
+      <div className="relative flex justify-center mt-4">
+        {open && (
+          <div
+            //   x-show={}
+            x-transition:enter="transition duration-300 ease-out"
+            x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+            x-transition:leave="transition duration-150 ease-in"
+            x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+            x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+            className="fixed inset-0 z-10 mt-8 overflow-y-auto lg:ml-44 "
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+              <span
+                className="hidden sm:inline-block sm:h-screen sm:align-middle"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+
+              <div className="relative inline-block px-4 pt-8 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-900   sm:my-8 sm:w-full sm:max-w-2xl sm:p-6 sm:align-middle">
+                <h3
+                  className="text-2xl font-tauri leading-6 text-gray-800 capitalize dark:text-green-500"
+                  id="modal-title"
+                >
+                  Update A Coupone Code
+                </h3>
+                <hr className="my-8 border-green-700" />
+                <form
+                  onSubmit={handleSubmit(handleUpateCoupon)}
+                  className="mt-4 space-y-4"
+                >
+                  <label className="text-xl font-abel text-gray-700 dark:text-gray-200">
+                    Coupon Code
+                  </label>
+
+                  <label className="block mt-2">
+                    <input
+                      type="text"
+                      name="code"
+                      {...register("code", { required: true })}
+                      defaultValue={code}
+                      placeholder="Ex@: APARTMENT10"
+                      required
+                      className="block w-full px-4 py-4 text-md uppercase placeholder-gray-400/70 dark:placeholder-gray-500  text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    />
+                  </label>
+                  <label className="text-xl font-abel text-gray-700 dark:text-gray-200">
+                    Discount Percentage
+                  </label>
+                  <label className="block mt-4 ">
+                    <input
+                      type="number"
+                      name="discount"
+                      defaultValue={discount}
+                      {...register("discount", { required: true })}
+                      placeholder="Ex@: 20"
+                      required
+                      className="block w-full px-4 py-3 text-md text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    />
+                  </label>
+                  <label className="text-xl font-abel text-gray-700 dark:text-gray-200">
+                    Apartment No
+                  </label>
+                  <label className="block mt-4 ">
+                    <input
+                      type="text"
+                      name="apartmentNo"
+                      defaultValue={apartmentNo}
+                      {...register("apartmentNo", { required: true })}
+                      placeholder="Ex@: A-105"
+                      required
+                      className="block w-full uppercase px-4 py-3 text-md text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    />
+                  </label>
+                  <label className="text-xl font-abel text-gray-700 dark:text-gray-200">
+                    Valid Date
+                  </label>
+                  <label className="block mt-4 ">
+                    <input
+                      type="date"
+                      name="validDate"
+                      defaultValue={validDate}
+                      {...register("validDate", { required: true })}
+                      placeholder="yyyy/mm/dd"
+                      required
+                      className="block w-full uppercase placeholder-gray-400/70 dark:placeholder-gray-500 px-4 py-3 text-md text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    />
+                  </label>
+
+                  <div>
+                    <label className="block text-xl font-abel text-gray-500 dark:text-gray-300">
+                      Coupon Description
+                    </label>
+
+                    <textarea
+                      name="description"
+                      defaultValue={description}
+                      {...register("description", { required: true })}
+                      placeholder="What is About Coupon"
+                      className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                    ></textarea>
+                  </div>
+
+                  <div className="mt-4 sm:flex sm:items-center sm:-mx-2">
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
                       className="w-full px-4 py-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-rose-600 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
                     >
                       Cancel
