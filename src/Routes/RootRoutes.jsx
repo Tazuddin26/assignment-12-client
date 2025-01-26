@@ -20,11 +20,15 @@ import MemberAnnouncement from "../Pages/Member/MemberAnnouncement";
 import MakeAnnouncement from "../Dashboard/MakeAnnouncement/MakeAnnouncement";
 import AgreementRequest from "../Dashboard/AgreementRequest/AgreementRequest";
 import ManageCoupons from "../Dashboard/ManageCoupons/ManageCoupons";
+import ErrorPage from "../Layout/ErrorPage";
+import AllpaymentsHistory from "../Dashboard/AllPaymentsHistory.jsx/AllpaymentsHistory";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -41,9 +45,9 @@ export const router = createBrowserRouter([
       {
         path: "/apartments",
         element: (
-          // <PrivateRoute>
-          <Apartments />
-          // </PrivateRoute>
+          <PrivateRoute>
+            <Apartments />
+          </PrivateRoute>
         ),
       },
     ],
@@ -73,32 +77,60 @@ export const router = createBrowserRouter([
       //Member user
       {
         path: "memberProfile",
-        element: <MemberProfile />,
+        element: (
+          <MemberRoute>
+            <MemberProfile />
+          </MemberRoute>
+        ),
       },
       {
         path: "payment",
-        element: <MakePayment />,
+        element: (
+          <MemberRoute>
+            <MakePayment />
+          </MemberRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory />,
+        element: (
+          <MemberRoute>
+            <PaymentHistory />
+          </MemberRoute>
+        ),
       },
       {
         path: "memberAnnounce",
-        element: <MemberAnnouncement />,
+        element: (
+          <MemberRoute>
+            <MemberAnnouncement />
+          </MemberRoute>
+        ),
       },
       // Admin User
       {
         path: "manageMember",
-        element: <ManageMember />,
+        element: (
+          <AdminRoute>
+            <ManageMember />
+          </AdminRoute>
+        ),
       },
       {
         path: "adminProfile",
-        element: <AdminProfile />,
+        element: (
+          <AdminRoute>
+            <AdminProfile />
+          </AdminRoute>
+        ),
       },
       {
         path: "makeAnnouncement",
-        element: <MakeAnnouncement />,
+        element: (
+          <AdminRoute>
+            <MakeAnnouncement />
+          </AdminRoute>
+        ),
       },
       {
         path: "agreementRequest",
@@ -106,9 +138,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageCoupons",
+
         element: <ManageCoupons />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5100/couponUpdate/${params.id}`),
+          fetch(
+            `https://assignment-12-server-gamma-six.vercel.app/couponUpdate/${params.id}`
+          ),
+      },
+      {
+        path: "allPaymentHistory",
+        element: (
+          <AdminRoute>
+            <AllpaymentsHistory />
+          </AdminRoute>
+        ),
       },
     ],
   },

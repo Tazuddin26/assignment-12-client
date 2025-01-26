@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5100",
+  baseURL: "https://assignment-12-server-gamma-six.vercel.app",
 });
 const UseAxiosPublic = () => {
   return axiosPublic;

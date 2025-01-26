@@ -1,7 +1,7 @@
 import { RiSofaLine } from "react-icons/ri";
 import { FaRulerCombined } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
-import { IoPricetagsOutline } from "react-icons/io5";
+import { IoHomeOutline, IoPricetagsOutline } from "react-icons/io5";
 import UseAuth from "../../Hook/useAuth";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import UseRole from "../../Hook/useRole";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { MdOutlineSensorOccupied } from "react-icons/md";
 const Apartments = ({ apartment }) => {
   const { user, loading } = UseAuth();
   const axiosSecure = UseAxiosSecure();
@@ -17,7 +18,8 @@ const Apartments = ({ apartment }) => {
   const loginLocation = useLocation();
   const [role, isLoading] = UseRole();
   const [agreementDate, setAgreementDate] = useState(new Date());
-  console.log("Current role is: ", role);
+  // const [isButton, setIsButton] = useState(false);
+
   const {
     _id,
     apartment_img,
@@ -27,42 +29,33 @@ const Apartments = ({ apartment }) => {
     floor_no,
     block_name,
     apartment_no,
-    location,
+    status,
   } = apartment;
   const { min_rent, max_rent } = apartment.rentRange;
-  const handleAgreement = async () => {
+  const handleAgreement = async (id) => {
+    console.log(id);
+    const res = await axiosSecure.patch(`/apartments/${id}`);
+    console.log("agreement data modifiy", res.data.modifiedCount);
+
     if (user && user?.email) {
-      // let agreementData;
-      // if (role === "member") {
       const agreementData = {
         agreementId: _id,
         userName: user?.displayName,
         userEmail: user?.email,
-        floorNo: floor_no,
-        blockName: block_name,
-        apartmentNo: apartment_no,
-        rent: { min_rent: parseInt(min_rent), max_rent: parseInt(max_rent) },
+        floorNo: floor_no || "none",
+        blockName: block_name || "none",
+        apartmentNo: apartment_no || "none",
+        rent:
+          { min_rent: parseInt(min_rent), max_rent: parseInt(max_rent) } || 0,
         agreementDate: agreementDate.toISOString().split("T")[0],
         status: "pending",
       };
+
       <DatePicker
         selected={agreementDate}
         onChange={(date) => setAgreementDate(date)}
         dateFormat="yyyy-MM-dd"
       />;
-      // } else if (!role || Object.keys(role).length === 0) {
-      //   agreementData = {
-      //     agreementId: _id,
-      //     userName: user?.displayName,
-      //     userEmail: user?.email,
-      //     floorNo: "none",
-      //     blockName: "none",
-      //     apartmentNo: "none",
-      //     rent: "none",
-      //     agreementDate: "none",
-      //     status: "pending",
-      //   };
-      // }
       const res = await axiosSecure.post("/agreement", agreementData);
       console.log(res.data);
       if (res.data.insertedId) {
@@ -113,8 +106,8 @@ const Apartments = ({ apartment }) => {
             </h1>
           </div>
           <div className="flex items-center mt-4 text-gray-700">
-            <CiLocationOn size={24} />
-            <h1 className="px-2 text-sm">{location}</h1>
+            <IoHomeOutline size={24} />
+            <h1 className="px-2 text-sm">{apartment_no}</h1>
           </div>
           <div className="flex items-center mt-4 text-gray-700 ">
             <IoPricetagsOutline size={24} />
@@ -122,10 +115,15 @@ const Apartments = ({ apartment }) => {
               Rent : ${min_rent} - ${max_rent}
             </h1>
           </div>
+          {/* <div className="flex items-center mt-4 text-gray-700 ">
+            <MdOutlineSensorOccupied size={24} />
+            <h1 className="px-2 text-xl">Status : {status}</h1>
+          </div> */}
+
           <div className="flex justify-end mr-2 my-3">
             <button
-              onClick={handleAgreement}
-              className="px-6 py-3 border rounded-lg transition-colors duration-500 hover:bg-green-500  bg-green-700 "
+              onClick={() => handleAgreement(_id)}
+              className="px-6 py-3 border rounded-lg transition-colors duration-500 bg-green-600 hover:bg-green-500"
             >
               Agreement
             </button>

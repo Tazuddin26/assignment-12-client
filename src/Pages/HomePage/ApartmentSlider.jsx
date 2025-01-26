@@ -4,18 +4,24 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { BiSolidBuildingHouse } from "react-icons/bi";
+import Coupon from "./Coupon/Coupon";
 
 const ApartmentSlider = () => {
   return (
     <div className="">
-      <div className="my-10 ">
-        <h1 className="text-3xl font-tauri text-center">
+      <div className="my-10 relative">
+        <h1 className="text-3xl font-tauri text-center textc-center">
           Standard Value,Silent Environment <br /> & Most Tide Security!
         </h1>
+
         <div className="divider divider-success lg:mx-36 mx-4 my-10 ">
           <BiSolidBuildingHouse size={68} className="text-gray-900 w-28 " />
         </div>
+        <div className="bottom-2 right-0 animate-bounce z-10 fixed">
+          <Coupon />
+        </div>
       </div>
+
       <div className="">
         <Swiper
           slidesPerView={2}

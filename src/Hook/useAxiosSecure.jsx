@@ -3,19 +3,19 @@ import { useNavigate } from "react-router-dom";
 import UseAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5100",
+  baseURL: "https://assignment-12-server-gamma-six.vercel.app",
 });
 const UseAxiosSecure = () => {
   const navigate = useNavigate();
   const { signOutUser } = UseAuth();
   // Interceptors request
   axiosSecure.interceptors.request.use(
-    function(config){
+    function (config) {
       const token = localStorage.getItem("access-token");
       config.headers.authorization = `Bearer ${token}`;
       return config;
     },
-    function(error){
+    function (error) {
       return Promise.reject(error);
     }
   );

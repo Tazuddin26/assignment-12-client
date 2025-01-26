@@ -10,20 +10,10 @@ const AgreementRequest = () => {
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
   const [agreements, refetch] = UseAllAgreements();
-
-  // const { data: agreements = [], refetch } = useQuery({
-  //   queryKey: ["agreements"],
-  //   queryFn: async () => {
-  //     const res = await axiosSecure.get("/allAgreements");
-  //     console.log("all agreement data", res.data);
-  //     return res.data;
-  //   },
-  // });
-
   const handleRequestAccept = (id, user) => {
-    axiosSecure.patch(`/agreements/${id}`, { action: "accept" }).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
+    axiosSecure.patch(`/agreements/${id}`, { rented: "accept" }).then((res) => {
+      console.log(res.data.result);
+      if (res.data.result.modifiedCount > 0) {
         refetch();
         Swal.fire({
           position: "top-end",
@@ -32,14 +22,14 @@ const AgreementRequest = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        handleRemoveCard(id);
+        // handleRemoveCard(id);
       }
     });
   };
 
   const handleRequestReject = (id, user) => {
     console.log("user is", user, id);
-    axiosSecure.patch(`/agreements/${id}`, { action: "reject" }).then((res) => {
+    axiosSecure.patch(`/agreements/${id}`, { rented: "reject" }).then((res) => {
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -139,27 +129,30 @@ const AgreementRequest = () => {
               Request Date :{" "}
               <span className="text-green-500">{agreement.agreementDate}</span>
             </p>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 space-y-5">
               <p className="text-md text-gray-600 dark:text-gray-200">
                 Status:{" "}
                 <span className="gap-1 text-center font-tauri items-center text-pink-600 rounded-full bg-emerald-100/60 hover:bg-green-500 dark:bg-gray-600 px-4 py-1">
                   {agreement.status}
                 </span>
               </p>
-              <a
-                href="#"
-                className="text-lg font-medium text-blue-600 dark:text-blue-300"
-                tabindex="0"
-                role="link"
-              >
+              <a className="text-lg font-medium text-blue-600 dark:text-blue-300">
                 {agreement.userName}
               </a>
             </div>
-            <div className="flex justify-between mt-4    my-5">
+            <p className="text-md text-gray-600 dark:text-gray-200">
+              Rented :{" "}
+              <span className="gap-1 text-center font-tauri items-center text-amber-600 rounded-full bg-emerald-100/60 hover:bg-blue-500 dark:bg-gray-600 px-4 py-1">
+                {agreement?.rented
+                  ? agreement?.rented
+                  : "Unchecked"}
+              </span>
+            </p>
+            <div className="flex justify-between mt-10 ">
               <button
                 onClick={() => {
                   handleRequestAccept(agreement._id, agreement.userName);
-                  handleRemoveCard(agreement._id);
+                  // handleRemoveCard(agreement._id);
                 }}
                 type="submit"
                 className="flex gap-2 px-6 py-2.5 shadow-md leading-5 text-white transition-colors duration-300 transform bg-green-700 rounded-md hover:bg-green-600 focus:outline-none focus:bg-gray-600"

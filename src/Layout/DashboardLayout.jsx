@@ -63,17 +63,19 @@ const DashboardLayout = () => {
             <nav className="space-y-4">
               {role === "member" && <Member />}
               {role === "admin" && <Admin />}
-              {!role && <User />}
+              {/* {role === "user" && <User />} */}
+              {role !=='member' && role !== 'admin' &&  <User />}
               {/* <User /> */}
+
               <a className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200">
                 <ImProfile size={20} />
                 <NavLink to="/" className="mx-4 font-medium ">
-                  Home
+                  Back Home
                 </NavLink>
               </a>
             </nav>
 
-            <a className="flex items-center px-4 -mx-2">
+            <a className="flex items-center px-4 -mx-2 mt-5">
               <img
                 className="object-cover mx-2 rounded-full h-9 w-9"
                 src={user?.photoURL}

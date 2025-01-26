@@ -1,3 +1,4 @@
+import AboutUs from "./AboutUs";
 import ApartmentSlider from "./ApartmentSlider";
 import Banner from "./Banner";
 import FeatureApartment from "./FeatureApatrment";
@@ -7,8 +8,8 @@ const Home = () => {
     <div className="mt-24">
       <Banner />
       <ApartmentSlider />
-    <FeatureApartment/>
-      <h1 className="font-abel text-3xl">I am Home Page</h1>
+      <FeatureApartment />
+      <AboutUs />
     </div>
   );
 };

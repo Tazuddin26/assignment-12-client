@@ -1,9 +1,10 @@
 import React from "react";
-
+import { BiSolidBuildingHouse, BiSolidCctv } from "react-icons/bi";
+import { FaSquarespace } from "react-icons/fa";
+import { RiSofaFill } from "react-icons/ri";
 const FeatureApartment = () => {
   return (
     <div>
-      
       {/* <section className="bg-white dark:bg-gray-50">
         <div className="container px-6 py-10 mx-auto">
           <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-gray-700">
@@ -152,28 +153,29 @@ const FeatureApartment = () => {
         </div>
       </section> */}
       <section className="p-4 lg:p-8 dark:bg-gray-100 dark:text-gray-800">
-        <div className=""><h1 className="text-3xl font-abel">FEATURE</h1></div>
+        <div className="my-6">
+          <h1 className="text-3xl font-abel text-center">FEATURES</h1>
+          <div className="divider divider-neutral lg:mx-36 mx-4 my-10 ">
+            <BiSolidBuildingHouse size={68} className="text-indigo-900 w-28 " />
+          </div>
+        </div>
         <div className="container mx-auto space-y-12">
           <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
             <img
-              src="https://i.ibb.co.com/MpQZ68v/feature2.webp"
+              src="https://i.ibb.co.com/jvr1Cff/lobby.jpg"
               alt=""
               className="h-80 dark:bg-gray-500 aspect-video"
             />
             <div className="flex flex-col justify-center flex-1 p-6 dark:bg-green-100">
-              <span className="text-xs uppercase dark:text-gray-600">
-                Join, it's free
-              </span>
-              <h3 className="text-3xl font-bold">
-                We're not reinventing the wheel
+              <h3 className="flex gap-3 text-4xl font-abel font-bold">
+                <FaSquarespace size={44} className="text-pink-800" />
+                Luxurious Lobby
               </h3>
-              <p className="my-6 dark:text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-                aliquam possimus quas, error esse quos.
+              <p className="my-6 dark:text-gray-600 text-xl">
+                The luxurious lobby offers a grand entrance and elegantly
+                furnished concierge desk, creating a welcoming and sophisticated
+                atmosphere for residents and guests
               </p>
-              <button type="button" className="self-start">
-                Action
-              </button>
             </div>
           </div>
           <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse">
@@ -183,41 +185,31 @@ const FeatureApartment = () => {
               className="h-80 dark:bg-gray-500 aspect-video"
             />
             <div className="flex flex-col justify-center flex-1 p-6 dark:bg-sky-100">
-              <span className="text-xs uppercase dark:text-gray-600">
-                Join, it's free
-              </span>
-              <h3 className="text-3xl font-bold">
-                We're not reinventing the wheel
+              <h3 className="flex gap-3 text-4xl font-bold font-abel">
+                <RiSofaFill size={44} className="text-pink-800" />
+                Furnished Community Spaces
               </h3>
-              <p className="my-6 dark:text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-                aliquam possimus quas, error esse quos.
+              <p className="my-6 dark:text-gray-600 text-xl">
+                Offering fully-furnished and well-designed community spaces for
+                social gatherings.
               </p>
-              <button type="button" className="self-start">
-                Action
-              </button>
             </div>
           </div>
           <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
             <img
-              src="https://i.ibb.co.com/QNmBjzp/feature3.jpg"
+              src="https://i.ibb.co.com/YZJn7Jy/fotntimage.jpg"
               alt=""
               className="h-80 dark:bg-gray-500 aspect-video"
             />
-            <div className="flex flex-col justify-center flex-1 p-6 dark:bg-indigo-100">
-              <span className="text-xs uppercase dark:text-gray-600">
-                Join, it's free
-              </span>
-              <h3 className="text-3xl font-bold">
-                We're not reinventing the wheel
+            <div className="flex flex-col justify-center flex-1 p-6 dark:bg-rose-100">
+              <h3 className="flex gap-3 text-4xl font-abel  font-bold">
+                <BiSolidCctv size={44} className="text-pink-800" />
+                CCTV Surveillance Monitoring System.
               </h3>
-              <p className="my-6 dark:text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-                aliquam possimus quas, error esse quos.
+              <p className="my-6 dark:text-gray-600 text-xl">
+                Comprehensive CCTV monitoring system, ensuring round-the-clock
+                surveillance for enhanced security
               </p>
-              <button type="button" className="self-start">
-                Action
-              </button>
             </div>
           </div>
         </div>

@@ -53,6 +53,14 @@ const ManageCoupons = () => {
           timer: 1500,
         });
         // navigate("/");
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Date is Not Valid.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   };
@@ -131,6 +139,7 @@ const ManageCoupons = () => {
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
+
                       <th
                         scope="col"
                         className="py-3.5 px-4  text-lg font-normal font-abel text-gray-500 dark:text-green-600"

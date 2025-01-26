@@ -31,7 +31,7 @@ const Admin = () => {
             to="/dashboard/makeAnnouncement"
             className="mx-4 font-medium"
           >
-             Announcement
+            Announcement
           </NavLink>
         </a>
         <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
@@ -41,7 +41,7 @@ const Admin = () => {
             to="/dashboard/agreementRequest"
             className="mx-4 font-medium"
           >
-            Agreement 
+            Agreement
           </NavLink>
         </a>
         <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
@@ -49,6 +49,16 @@ const Admin = () => {
 
           <NavLink to="/dashboard/manageCoupons" className="mx-4 font-medium">
             Manage Coupons
+          </NavLink>
+        </a>
+        <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+          <RiCoupon3Fill size={24} />
+
+          <NavLink
+            to="/dashboard/allPaymentHistory"
+            className="mx-4 font-medium"
+          >
+            Payment History
           </NavLink>
         </a>
 

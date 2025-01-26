@@ -58,7 +58,7 @@ const Navbar = () => {
                   {open ? (
                     <RxCross1 size={24} className="dark:text-white" />
                   ) : (
-                    <HiOutlineMenuAlt4 size={24} className="dark:text-white"/>
+                    <HiOutlineMenuAlt4 size={24} className="dark:text-white" />
                   )}
                 </button>
               </div>
@@ -149,8 +149,14 @@ const Navbar = () => {
                         <p className="mx-2 text-xl font-abel text-gray-600 dark:text-white">
                           <span className="font-bold">
                             {user && isAdmin && (
-                              <Link to="/dashboard/adminProfile" className="flex items-center gap-2">
-                                <MdDashboard size={20} className="text-green-600"/>
+                              <Link
+                                to="/dashboard/adminProfile"
+                                className="flex items-center gap-2"
+                              >
+                                <MdDashboard
+                                  size={20}
+                                  className="text-green-600"
+                                />
                                 Dashboard
                               </Link>
                             )}

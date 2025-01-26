@@ -5,19 +5,18 @@ import UseAxiosSecure from "./useAxiosSecure";
 const UseAdmin = () => {
   const { user, loading } = UseAuth();
   const axiosSecure = UseAxiosSecure();
-  const { data, isLoading, error } = useQuery({
+  const { data: isAdmin, isPending: isAdminLoading } = useQuery({
     queryKey: [user?.email, "role"],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/admin/${user?.email}`);
       console.log("user Check Response:", res.data);
-      return res.data;
+      return res.data?.admin;
     },
   });
-  if (error) {
-    console.log("Error featching roles:", error);
-  }
-  return { isAdmin: data?.admin, isMember: data?.member, isLoading };
+
+  // return { isAdmin: data?.admin, isMember: data?.member, isLoading };
+  return [isAdmin ,isAdminLoading]
 };
 
 export default UseAdmin;

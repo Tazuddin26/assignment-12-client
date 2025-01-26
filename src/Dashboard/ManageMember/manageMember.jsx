@@ -3,13 +3,16 @@ import UseAxiosSecure from "../../Hook/useAxiosSecure";
 // import UseAuth from "../../Hook/useAuth";
 import { FaEdit, FaTrash, FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
-import UseRole from "../../Hook/useRole";
+import { useState } from "react";
 
 const ManageMember = () => {
+  // const [users, setUsers] = useState([]);
   const axiosSecure = UseAxiosSecure();
-  const [role] = UseRole();
-  //   const { user } = UseAuth();
-  const { data: users = [], refetch } = useQuery({
+  const {
+    data: users = [],
+    refetch,
+    isPending,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -17,21 +20,37 @@ const ManageMember = () => {
     },
   });
 
-  //   make Admin Handler
-  const handleMakeAdmin = (user) => {
-    axiosSecure.patch(`/users/member/${user.id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${user.name} is an Member Now!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+  //   make Role Handler
+  const handleMakeMember = (user) => {
+    axiosSecure
+      .patch(`/users/member/${user._id}`)
+      .then((res) => {
+        console.log("user role data", res.data.memberResult);
+        if (
+          // res.data.memberResult.insertedId &&
+          res.data.userResult.modifiedCount > 0
+        ) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} You are Member Now!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: `${res.data.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("user to member error", error);
+      });
   };
 
   const handleDeleteUser = (user) => {
@@ -50,9 +69,21 @@ const ManageMember = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Memeber is Deleted.",
               icon: "success",
             });
+            // axiosSecure
+            //   .patch(`/apartments/${user._id}`, { status: "Available" })
+            //   .then((res) => {
+            //     if (res.data.modifiedCount > 0) {
+            //       refetch();
+            //       Swal.fire({
+            //         title: "Success!",
+            //         text: "Apartment data is Updated.",
+            //         icon: "success",
+            //       });
+            //     }
+            //   });
           }
         });
       }
@@ -175,7 +206,7 @@ const ManageMember = () => {
                             )
                           ) : (
                             <button
-                              onClick={() => handleMakeAdmin(manageUser)}
+                              onClick={() => handleMakeMember(manageUser)}
                               className=""
                             >
                               <span className="flex items-center gap-1 rounded-full bg-emerald-100/60 hover:bg-green-500 dark:bg-gray-800 px-4 py-1">

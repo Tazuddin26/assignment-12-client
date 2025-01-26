@@ -5,6 +5,8 @@ import UseAuth from "../../Hook/useAuth";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
+import { MdOutlineMail } from "react-icons/md";
+import { TbLockPassword } from "react-icons/tb";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const SignUp = () => {
@@ -63,21 +65,23 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="flex w-full my-10 max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
-      <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/8zMxgRR/img2.jpg')] "></div>
+    <div className="flex w-full my-10 mt-40  max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
+      <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/jTwdcv4/building.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="">
-          <p className="mt-3 text-2xl text-center font-tauri">Welcome To!</p>
+          <p className="mt-3 text-2xl text-center font-tauri text-white">
+            Welcome To!
+          </p>
           <div className="flex justify-center mx-auto">
             <div className="flex items-center">
               <BiBuildingHouse size={38} className="text-green-800" />
-              <p className="font-abel text-2xl ">Dream Rent</p>
+              <p className="font-abel text-2xl text-white">Dream Rent</p>
             </div>
           </div>
-          <div className="relative items-center mt-8">
+          <div className="relative items-center mt-8 flex">
             <span className="absolute">
-              <FiUser size={24} className="mx-3 text-gray-300 " />
+              <FiUser size={24} className="mx-3 text-gray-700 " />
             </span>
             <input
               {...register("username", { required: true })}
@@ -95,7 +99,7 @@ const SignUp = () => {
             htmlFor="dropzone-file"
             className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer "
           >
-            <FiUpload size={24} className=" text-gray-300" />
+            <FiUpload size={24} className=" text-gray-700" />
 
             <h2 className="mx-3 text-gray-400">Profile Photo</h2>
             <input
@@ -111,7 +115,10 @@ const SignUp = () => {
             )}
           </label>
           <div className="mt-4">
-            <div className="  items-center ">
+            <div className="  items-center flex">
+              <span className="absolute">
+                <MdOutlineMail size={24} className="mx-3 text-gray-700 " />
+              </span>
               <input
                 {...register("email", { required: true })}
                 type="email"
@@ -167,7 +174,7 @@ const SignUp = () => {
             <input
               type="submit"
               value="Sign Up"
-              className="w-full px-6 py-3 btn btn-outline"
+              className="w-full px-6 py-3 btn btn-success"
             />
           </div>
 

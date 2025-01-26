@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import UseApartment from "../../Hook/useApartment";
 import Apartments from "./Apartments";
 import UseAxiosPublic from "../../Hook/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import UseAuth from "../../Hook/useAuth";
 
 const Apartment = () => {
-  // const [apartments] = UseApartment();
+  const { loading, setLoading } = UseAuth();
   const axiosPublic = UseAxiosPublic();
   const [rentRange, setRentRange] = useState("");
   const [search, setSearch] = useState("");
   const [searchText, setSearchText] = useState("");
   const [apartments, setApartments] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const handleSearch = () => {
     setSearch(searchText);
   };
-  console.log("all data", apartments);
+  // console.log("all data", apartments);
   useEffect(() => {
     const getData = async () => {
       const [min_rent, max_rent] = rentRange
@@ -26,37 +27,24 @@ const Apartment = () => {
             min_rent,
             max_rent,
             search: search || "",
+            limit: 6,
+            page: currentPage,
           },
         });
-        setApartments(res.data); 
+        // console.log(res.data);
+        setApartments(Array.isArray(res.data.result) ? res.data.result : []);
+        setTotalPage(res.data.totalPage || 0);
+        // console.log(res.data.totalPage);
       } catch (error) {
         console.error("Error fetching apartments:", error);
       }
     };
     getData();
-  }, [rentRange, search]);
-
-  // const { data: apartments = [], refetch } = useQuery({
-  //   queryKey: ["apartments", rentRange],
-  //   queryFn: async () => {
-  //     const [min_rent, max_rent] = rentRange
-  //       ? rentRange.split("-").map(Number)
-  //       : [0, Infinity];
-
-  //     const res = await axiosPublic.get("/apartments", {
-  //       params: {
-  //         min_rent: min_rent || "",
-  //         max_rent: max_rent || "",
-  //       },
-  //     });
-  //     console.log(res.data);
-  //     return [res.data, refetch];
-  //   },
-  // });
+    console.log("Current Page:", currentPage);
+  }, [rentRange, search, currentPage]);
 
   return (
-    <div className="max-w-7xl mx-auto my-10">
-      <h1>Apartments:{apartments.length}</h1>
+    <div className="max-w-7xl mx-auto my-10 mt-40">
       <div>
         <div className="flex flex-col lg:flex-row my-6 items-center gap-6 justify-center">
           <div>
@@ -91,7 +79,7 @@ const Apartment = () => {
                   />
                 </div>
               </div>
-              <div className="indicator">
+              <div className="indicator ">
                 <button
                   onClick={() => handleSearch()}
                   className="btn join-item btn-success"
@@ -104,9 +92,34 @@ const Apartment = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {apartments.map((apartment) => (
-          <Apartments key={apartment._id} apartment={apartment} />
-        ))}
+        {apartments
+          ? apartments.map((apartment) => (
+              <Apartments key={apartment._id} apartment={apartment} />
+            ))
+          : null}
+      </div>
+
+      <div className="flex justify-center items-center space-x-1">
+        <div className="flex items-center space-x-3 px-4 py-2 mx-1 text-gray-500 rounded-md  bg-s-300  dark:text-gray-600">
+          {totalPage > 0 &&
+            Array.from({ length: totalPage }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentPage(index + 1);
+                }}
+                className={
+                  currentPage === index + 1
+                    ? "btn items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-green-600 dark:hover:bg-green-500 hover:text-white dark:hover:text-gray-200"
+                    : "btn"
+                }
+                title="previous"
+                type="button"
+              >
+                {index + 1}
+              </button>
+            ))}
+        </div>
       </div>
     </div>
   );

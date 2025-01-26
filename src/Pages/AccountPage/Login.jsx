@@ -56,22 +56,22 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full my-10 mt-40 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
-      <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/k0ZGmmR/img1.jpg')] "></div>
+    <div className="flex w-full my-10 mt-40 bg-gray-800 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
+      <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/dPZsD92/about.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 ">
         <form onSubmit={handleLogin} action="">
-          <p className="mt-3 text-2xl text-center font-tauri">Welcome back!</p>
+          <p className="mt-3 text-2xl text-white text-center font-tauri">Welcome back!</p>
           <div className="flex justify-center mx-auto">
-            <div className="flex items-center">
+            <div className="flex items-center mt-2">
               <BiBuildingHouse size={38} className="text-green-800" />
-              <p className="font-abel text-2xl ">Dream Rent</p>
+              <p className="font-abel text-white text-2xl ">Dream Rent</p>
             </div>
           </div>
           <div className="">
             <button
               onClick={handleGoogleSignIn}
-              className="btn w-full btn-outline font-bold text-center"
+              className="btn w-full btn-info font-bold text-center"
             >
               <FcGoogle size={28} />
               Sign in with Google

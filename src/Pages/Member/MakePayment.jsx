@@ -44,7 +44,6 @@ const MakePayment = () => {
       dateFormat="yyyy-MM-dd"
     />;
     axiosSecure.post("/payments", formData).then((res) => {
-     
       if (res.data.insertedId) {
         reset();
         Swal.fire({
@@ -55,7 +54,7 @@ const MakePayment = () => {
           timer: 1500,
         });
         // navigate("/");
-      }
+      } 
     });
   };
   const handleCouponApply = async (e) => {
@@ -81,7 +80,11 @@ const MakePayment = () => {
     }
   };
   if (!agreement || agreement.length === 0) {
-    return <div>Loading agreement data...</div>;
+    return (
+      <div className="text-3xl bg-yellow-300 py-2 rounded-md text-center mt-8">
+        There is no data In My Payment History...
+      </div>
+    );
   }
   return (
     <div className="w-full">
