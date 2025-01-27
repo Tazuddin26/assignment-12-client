@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { MdOutlineSensorOccupied } from "react-icons/md";
+import { GrStatusInfo } from "react-icons/gr";
 const Apartments = ({ apartment }) => {
   const { user, loading } = UseAuth();
   const axiosSecure = UseAxiosSecure();
@@ -18,7 +19,7 @@ const Apartments = ({ apartment }) => {
   const loginLocation = useLocation();
   const [role, isLoading] = UseRole();
   const [agreementDate, setAgreementDate] = useState(new Date());
-  // const [isButton, setIsButton] = useState(false);
+  const [isStatus, setIsStatus] = useState(apartment.status);
 
   const {
     _id,
@@ -33,10 +34,13 @@ const Apartments = ({ apartment }) => {
   } = apartment;
   const { min_rent, max_rent } = apartment.rentRange;
   const handleAgreement = async (id) => {
+    setIsStatus("Occupied");
     console.log(id);
     const res = await axiosSecure.patch(`/apartments/${id}`);
     console.log("agreement data modifiy", res.data.modifiedCount);
-
+    if (res.data.success) {
+      setIsStatus(apartment.status);
+    }
     if (user && user?.email) {
       const agreementData = {
         agreementId: _id,
@@ -97,7 +101,7 @@ const Apartments = ({ apartment }) => {
             {furnishing}
           </h1>
         </div>
-        <div className="px-6">
+        <div className="px-6 font-abel">
           <p className=" text-gray-700 mt-2 text-xl">{description}</p>
           <div className="flex items-center mt-4 text-gray-700 ">
             <FaRulerCombined size={20} />
@@ -116,16 +120,25 @@ const Apartments = ({ apartment }) => {
             </h1>
           </div>
           {/* <div className="flex items-center mt-4 text-gray-700 ">
-            <MdOutlineSensorOccupied size={24} />
-            <h1 className="px-2 text-xl">Status : {status}</h1>
+            <GrStatusInfo size={24} />
+            <h1 className="px-2 text-xl">
+              Status:{" "}
+              <span className="bg-indigo-100 py-1 px-5 rounded-full">
+                {status}
+              </span>
+            </h1>
           </div> */}
 
           <div className="flex justify-end mr-2 my-3">
             <button
               onClick={() => handleAgreement(_id)}
-              className="px-6 py-3 border rounded-lg transition-colors duration-500 bg-green-600 hover:bg-green-500"
+              className={`px-6 py-3 border rounded-lg transition-colors duration-500 ${
+                isStatus === "Occupied"
+                  ? "opacity-50 bg-green-600 "
+                  : "bg-green-600 hover:bg-green-500 "
+              }`}
             >
-              Agreement
+              {isStatus === "Occupied" ? "Rent Request" : "Agreement"}
             </button>
           </div>
         </div>

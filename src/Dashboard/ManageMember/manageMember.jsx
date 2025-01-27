@@ -229,9 +229,9 @@ const ManageMember = () => {
                               <FaTrash size={16} />
                             </button>
 
-                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            {/* <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <FaEdit size={20} />
-                            </button>
+                            </button> */}
                           </div>
                         </td>
                       </tr>

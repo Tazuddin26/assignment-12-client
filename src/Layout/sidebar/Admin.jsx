@@ -1,7 +1,7 @@
 import React from "react";
 import { GrUserAdmin } from "react-icons/gr";
 import { HiSpeakerphone } from "react-icons/hi";
-import { MdManageAccounts } from "react-icons/md";
+import { MdManageAccounts, MdOutlinePayments } from "react-icons/md";
 import { RiCoupon3Fill } from "react-icons/ri";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { NavLink } from "react-router-dom";
@@ -52,8 +52,7 @@ const Admin = () => {
           </NavLink>
         </a>
         <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
-          <RiCoupon3Fill size={24} />
-
+          <MdOutlinePayments size={24} />
           <NavLink
             to="/dashboard/allPaymentHistory"
             className="mx-4 font-medium"
