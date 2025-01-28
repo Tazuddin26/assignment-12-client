@@ -66,7 +66,6 @@ const Navbar = () => {
 
             {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
             <div
-              //    className="relative w-full lg:w-auto lg:flex lg:items-center"
               className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out dark:bg-gray-800  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
                 open
                   ? "translate-x-0 opacity-100"
@@ -90,16 +89,16 @@ const Navbar = () => {
 
               <div className="flex items-center mt-4 lg:mt-0">
                 <button
-                  className="hidden mx-4  relative text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
+                  className=" mx-4  relative text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
                   aria-label="show notifications"
                 >
                   <IoIosNotificationsOutline
                     size={32}
-                    className="dark:text-yellow-300"
+                    className="dark:text-yellow-300 "
                   />
                 </button>{" "}
                 {role === "admin" ? (
-                  <span className="absolute w-4 h-4 p-2 border top-2 text-pink-600 font-bold right-20 text-sm bg-green-200 rounded-full items-center flex justify-center">
+                  <span className="absolute w-4 h-4 p-2 border lg:top-2 lg:left-80 left-14 top-32 text-pink-600 font-bold  text-sm bg-green-200 rounded-full items-center flex justify-center">
                     {agreement.length}
                   </span>
                 ) : (
@@ -167,7 +166,7 @@ const Navbar = () => {
                             )}
                             {user && !isAdmin && !isMember ? (
                               <Link to="/dashboard/agreement">Dashboard</Link>
-                            ) : null}
+                            ) : ''}
                           </span>
                         </p>
                       </a>
