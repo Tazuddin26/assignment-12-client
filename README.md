@@ -20,7 +20,7 @@ MAIN FEATURE IN THIS WEBSITE:
 10. all payments is checked this field.
 11. Agreements, member request is accept in this field .
 
-<h2 align="left">I code with</h2>
+<h2 align="left">Technology Used</h2>
 
 ###
 
