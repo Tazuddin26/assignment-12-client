@@ -32,7 +32,7 @@ MAIN FEATURE IN THIS WEBSITE:
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" alt="nodejs logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40" alt="tailwindcss logo"  />
-  <img width="24" />
+  <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" alt="mongodb logo"  />
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
@@ -45,10 +45,13 @@ MAIN FEATURE IN THIS WEBSITE:
 ###
 <h2>Project Picture:</h2>
 <div>
-  <img src="https://i.ibb.co.com/KjJ20xcS/rent1.png"/>
-  <img src="https://i.ibb.co.com/RT4wCnhg/rent5.png"/>
-  <img src="https://i.ibb.co.com/HDm9cR1X/rent3.png"/>
-  <img src="https://i.ibb.co.com/b5CCBY1S/rent4.png"/>
+  <img src="https://i.ibb.co.com/KjJ20xcS/rent1.png" width="400" height="200"/>
+   <img width="12" />
+  <img src="https://i.ibb.co.com/RT4wCnhg/rent5.png" width="400" height="200"/>
+   <img width="12" />
+  <img src="https://i.ibb.co.com/HDm9cR1X/rent3.png" width="400" height="200"/>
+   <img width="12" />
+  <img src="https://i.ibb.co.com/b5CCBY1S/rent4.png" width="400" height="200"/>
 </div>
 ** ... I am trying to complete my assignment and I'm trying my best.Allah bless the Programming Hero Team...
 
