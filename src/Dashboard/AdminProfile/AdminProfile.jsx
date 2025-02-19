@@ -7,7 +7,6 @@ import { FaUsers } from "react-icons/fa";
 import { FaUsersGear } from "react-icons/fa6";
 import { GrAnnounce } from "react-icons/gr";
 import { RiCoupon3Line } from "react-icons/ri";
-import Chart from "react-apexcharts";
 import StatisticsChart from "./StatisticsChart";
 const AdminProfile = () => {
   const { user } = UseAuth();
@@ -126,36 +125,6 @@ const AdminProfile = () => {
     <div className="">
     <StatisticsChart/>
     </div>
-      {/* <div className="w-full max-w-lg lg:ml-8 px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-        <div className="flex justify-center -mt-16 ">
-          <img
-            className="object-cover w-24 h-24 border-2 border-teal-500 rounded-full shadow-md shadow-green-800 dark:border-blue-500"
-            alt="Testimonial avatar"
-            src={user?.photoURL}
-          />
-        </div>
-
-        <h2 className=" text-3xl font-abel font-semibold text-center my-10  text-gray-800 dark:text-green-500 md:mt-0">
-          Owner
-        </h2>
-        <h3 className="text-sky-500 text-center font-abel text-2xl">
-          {user.displayName}
-        </h3>
-        <p className="text-gray-500 text-center font-abel ">{user.email}</p>
-
-        <p className="mt-2 text-md font-tauri text-gray-600 dark:text-gray-200">
-          The building impresses every person because it is a “mini natural
-          environment ” with its indoor transportation facilities, facilities
-          for the live environment, gymnasium, swimming pool, and Wi-Fi internet
-          system. Besides, the interior of the building is so spacious one could
-          literally get lost in it while looking at its elegant interior and
-          decoration. All in all, it is a building worth living.!!
-        </p>
-
-        <div className="flex justify-end mt-4">
-          <a className="text-xl font-abel font-medium text-sky-500 "></a>
-        </div>
-      </div> */}
     </div>
   );
 };
