@@ -6,6 +6,7 @@ import { GrCycle } from "react-icons/gr";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
+import { Link } from "react-router-dom";
 
 const MakePayment = () => {
   const [agreement, refetch] = UseAgreement();
@@ -54,13 +55,14 @@ const MakePayment = () => {
           timer: 1500,
         });
         // navigate("/");
-      } 
+      }
     });
   };
   const handleCouponApply = async (e) => {
     e.preventDefault();
     try {
       const res = await axiosSecure.post("/couponCode", { couponCode: coupon });
+      console.log("coupon code", res.data);
       if (res.data && res.data.discount) {
         setDiscount(res.data.discount);
         Swal.fire({
@@ -68,7 +70,7 @@ const MakePayment = () => {
           title: "Coupon Applied!",
           text: `You got ${res.data.discount}% discount.`,
         });
-      } else {
+      } else if (res.data.message) {
         Swal.fire({
           icon: "error",
           title: "Invalid Coupon",
@@ -256,6 +258,14 @@ const MakePayment = () => {
               <GrCycle size={28} className="text-white " />
               <span className="mx-1">Payment</span>
             </button>
+            {/* <Link>  
+            <button to='/dashboard/paypayment'              
+              className="flex justify-center  items-center text-xl px-6 py-2 space-x-4 font-medium font-abel tracking-wide  capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+            >
+              <GrCycle size={28} className="text-white " />
+              <span className="mx-1">Payment</span>
+            </button> 
+            </Link> */}
           </div>
         </form>
       </section>

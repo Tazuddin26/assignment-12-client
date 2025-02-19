@@ -132,13 +132,10 @@ const Apartments = ({ apartment }) => {
           <div className="flex justify-end mr-2 my-3">
             <button
               onClick={() => handleAgreement(_id)}
-              className={`px-6 py-3 border rounded-lg transition-colors duration-500 ${
-                isStatus === "Occupied"
-                  ? "opacity-50 bg-green-600 "
-                  : "bg-green-600 hover:bg-green-500 "
-              }`}
+              className="px-6 py-3 border rounded-lg transition-colors duration-500 bg-green-600 hover:bg-green-500"  
             >
-              {isStatus === "Occupied" ? "Rent Request" : "Agreement"}
+              {/* {isStatus === "Occupied" ? `${status}` : "Agreement"} */}
+              Agreement
             </button>
           </div>
         </div>

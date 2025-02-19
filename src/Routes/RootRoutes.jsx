@@ -9,7 +9,6 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import NormalUser from "../Dashboard/Agreements/Agreements";
 import Announcements from "../Pages/Announcements/Announcements";
 import Agreements from "../Dashboard/Agreements/Agreements";
-// import MemberUser from "../Dashboard/MemberUser/MemberUser";
 import ManageMember from "../Dashboard/ManageMember/manageMember";
 import MemberProfile from "../Pages/Member/MemberProfile";
 import AdminProfile from "../Dashboard/AdminProfile/AdminProfile";
@@ -23,6 +22,9 @@ import ManageCoupons from "../Dashboard/ManageCoupons/ManageCoupons";
 import ErrorPage from "../Layout/ErrorPage";
 import AllpaymentsHistory from "../Dashboard/AllPaymentsHistory.jsx/AllpaymentsHistory";
 import AdminRoute from "./AdminRoute";
+import PayPayment from "../Pages/Member/PayPayment";
+// import DashboardHome from "../Dashboard/DashboardHome ";
+import Profile from "../Dashboard/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +86,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "paypayment",
+        element: <PayPayment />,
+      },
+      {
         path: "payment",
         element: (
           <MemberRoute>
@@ -117,7 +123,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "adminProfile",
+        path: "dashboardHome",
         element: (
           <AdminRoute>
             <AdminProfile />
@@ -141,15 +147,21 @@ export const router = createBrowserRouter([
 
         element: <ManageCoupons />,
         loader: ({ params }) =>
-          fetch(
-            `https://assignment-12-server-gamma-six.vercel.app/couponUpdate/${params.id}`
-          ),
+          fetch(`http://localhost:5100/couponUpdate/${params.id}`),
       },
       {
         path: "allPaymentHistory",
         element: (
           <AdminRoute>
             <AllpaymentsHistory />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "profileAll",
+        element: (
+          <AdminRoute>
+            <Profile />
           </AdminRoute>
         ),
       },

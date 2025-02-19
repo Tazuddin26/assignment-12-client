@@ -9,20 +9,30 @@ import Member from "./sidebar/Member";
 import User from "./sidebar/User";
 import UseRole from "../Hook/useRole";
 import { IoHomeSharp } from "react-icons/io5";
+import DashboardNavbar from "../Dashboard/DashboardNavbar";
+import { useState } from "react";
 
 const DashboardLayout = () => {
   const { user } = UseAuth();
   const [agreement] = UseAgreement();
   const [role] = UseRole();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   //TODO : pending
-  const { isAdmin, isMember, isLoading } = UseAdmin();
+  const { isLoading } = UseAdmin();
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
   if (isLoading) {
     return <div className="flex justify-center text-red-700">Loading...</div>;
   }
   return (
-    <div className="lg:flex">
+    <div className="lg:flex justify-between ">
       <div className="">
-        <aside className="lg:flex flex-col lg:w-64  min-h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+        <aside
+          className={`lg:flex flex-col w-64 fixed inset-0 z-50 min-h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 ${
+            isSidebarOpen ? "block" : "hidden"
+          }`}
+        >
           <div>
             <BiBuildingHouse size={38} className="text-green-600" />
             <p className="font-abel text-2xl text-white">Dream Rent</p>
@@ -45,7 +55,7 @@ const DashboardLayout = () => {
               {role !== "member" && role !== "admin" && <User />}
 
               <a className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200">
-              <IoHomeSharp size={20} />
+                <IoHomeSharp size={20} />
                 <NavLink to="/" className="mx-4 font-medium ">
                   Back Home
                 </NavLink>
@@ -65,9 +75,19 @@ const DashboardLayout = () => {
           </div>
         </aside>
       </div>
+
       {/* Dashboard Content */}
-      <div className="w-full p-6">
-        <Outlet />
+      <div className="lg:w-10/12 justify-end bg-gray-100 dark:bg-gray-100">
+        <div className="px-6">
+          {" "}
+          <DashboardNavbar
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        </div>
+        <div className="lg:p-6 ">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

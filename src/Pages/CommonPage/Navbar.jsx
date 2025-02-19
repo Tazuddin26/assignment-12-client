@@ -144,7 +144,7 @@ const Navbar = () => {
                           <span className="font-bold">{user?.displayName}</span>
                         </p>
                       </a>
-                      <a className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
+                      <div className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
                         <p className="mx-2 text-xl font-abel text-gray-600 dark:text-white">
                           <span className="font-bold">
                             {user && isAdmin && (
@@ -166,11 +166,11 @@ const Navbar = () => {
                             )}
                             {user && !isAdmin && !isMember ? (
                               <Link to="/dashboard/agreement">Dashboard</Link>
-                            ) : ''}
+                            ) : null}
                           </span>
                         </p>
-                      </a>
-                      <a className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
+                      </div>
+                      <div className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
                         <p className="mx-2 text-xl font-abel text-gray-600 dark:text-white">
                           <span className="font-bold font-abel">
                             {user ? (
@@ -202,7 +202,7 @@ const Navbar = () => {
                             )}
                           </span>
                         </p>
-                      </a>
+                      </div>
                     </div>
                     <a className="block py-4  font-bold text-center text-white bg-gray-800 dark:bg-green-700 hover:underline"></a>
                   </div>
