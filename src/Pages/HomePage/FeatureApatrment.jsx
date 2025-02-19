@@ -152,7 +152,7 @@ const FeatureApartment = () => {
           </div>
         </div>
       </section> */}
-      <section className="p-4 lg:p-8 dark:bg-gray-100 dark:text-gray-800">
+      <section className="p-4 lg:p-8 dark:text-gray-800">
         <div className="my-6">
           <h1 className="text-3xl font-abel text-center">FEATURES</h1>
           <div className="divider divider-neutral lg:mx-36 mx-4 my-10 ">

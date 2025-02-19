@@ -106,9 +106,10 @@ const Apartments = ({ apartment }) => {
           <div className="flex items-center mt-4 text-gray-700 ">
             <FaRulerCombined size={20} />
             <h1 className="px-2 text-base">
-              Apartment Size : {apartment_size}{" "}
+               {apartment_size}{" "}
             </h1>
           </div>
+          <div className="flex items-center text-gray-700">
           <div className="flex items-center mt-4 text-gray-700">
             <IoHomeOutline size={24} />
             <h1 className="px-2 text-sm">{apartment_no}</h1>
@@ -116,8 +117,9 @@ const Apartments = ({ apartment }) => {
           <div className="flex items-center mt-4 text-gray-700 ">
             <IoPricetagsOutline size={24} />
             <h1 className="px-2 text-base">
-              Rent : ${min_rent} - ${max_rent}
+              ${min_rent} - ${max_rent}
             </h1>
+          </div>
           </div>
           {/* <div className="flex items-center mt-4 text-gray-700 ">
             <GrStatusInfo size={24} />

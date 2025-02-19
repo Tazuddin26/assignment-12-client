@@ -24,10 +24,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const { isAdmin, isMember, isLoading } = UseAdmin();
-  // const [isMember,isMemberLoading] = UseMember();
-
-  // console.log("isAdmin:", isAdmin);
-  // console.log("isMember:", isMember);
   const handleLogout = () => {
     signOutUser()
       .then(() => {})

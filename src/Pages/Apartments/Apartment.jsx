@@ -27,7 +27,7 @@ const Apartment = () => {
             min_rent,
             max_rent,
             search: search || "",
-            limit: 6,
+            limit: 8,
             page: currentPage,
           },
         });
@@ -91,7 +91,7 @@ const Apartment = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4">
         {apartments
           ? apartments.map((apartment) => (
               <Apartments key={apartment._id} apartment={apartment} />

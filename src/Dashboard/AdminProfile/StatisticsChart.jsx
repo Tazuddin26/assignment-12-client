@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import StatisticsPieChart from "./StatisticsPieChart";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import { Legend } from "chart.js";
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#fe008c", "#00C49F", "#FFBB28", "#FF8042"];
 
 const StatisticsChart = () => {
   // const { user } = UseAuth();
