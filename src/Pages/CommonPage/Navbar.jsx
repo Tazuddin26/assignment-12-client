@@ -145,7 +145,7 @@ const Navbar = () => {
                           <span className="font-bold">
                             {user && isAdmin && (
                               <Link
-                                to="/dashboard/adminProfile"
+                                to="/dashboard/dashboardHome"
                                 className="flex items-center gap-2"
                               >
                                 <MdDashboard

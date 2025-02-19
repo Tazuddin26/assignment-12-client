@@ -24,7 +24,7 @@ const AdminProfile = () => {
     <div className="">
       {/* <h1></h1>
       {user?.displayName ? user?.displayName : "Admin is Come Back"} */}
-      <section className="p-3 dark:text-gray-100">
+      <section className="px-3 dark:text-gray-100 w-full">
         <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
           <div className="flex p-2 py-10 space-x-4 rounded-lg md:space-x-6 shadow-md scale-105 duration-700 transition dark:bg-green-200 dark:text-gray-800">
             <div className="flex justify-center p-2 align-middle rounded-lg sm:p-4 dark:bg-violet-600">

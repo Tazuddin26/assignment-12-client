@@ -16,6 +16,7 @@ const StatisticsPieChart = () => {
   const availablePercentage = stats?.totalApartments || 0;
   const users = stats?.users || 0;
   const members = stats?.members || 0;
+
   const [chartState, setChartState] = useState({
     series: [
       {
