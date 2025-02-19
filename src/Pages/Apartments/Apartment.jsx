@@ -82,7 +82,7 @@ const Apartment = () => {
                     onChange={(e) => setSearchText(e.target.value)}
                     value={searchText}
                     name="search"
-                    placeholder="Enter the Location"
+                    placeholder="Apartment size"
                   />
                 </div>
               </div>

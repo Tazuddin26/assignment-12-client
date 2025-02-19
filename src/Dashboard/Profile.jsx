@@ -64,7 +64,9 @@ export function Profile() {
                   Owner / Co-Founder
                 </Typography>
               </div>
+              <hr />
             </div>
+           
               {/* <div className="w-96">
                 <Tabs value="app">
                   <TabsHeader>
