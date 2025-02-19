@@ -36,8 +36,8 @@ const Navbar = () => {
   return (
     <div className=" ">
       <nav className="relative  ">
-        <div className=" fixed z-10 bg-opacity-30 w-full  scr top-0">
-          <div className="lg:flex lg:items-center lg:justify-between bg-gray-800 px-6 py-4 shadow-md shadow-green-800 ">
+        <div className=" fixed z-10 bg-opacity-30 w-full top-0">
+          <div className="lg:flex lg:items-center lg:justify-between bg-gray-800 px-6 py-2 shadow-md shadow-green-800 ">
             <div className="flex items-center justify-between">
               <div>
                 <BiBuildingHouse size={38} className="text-green-600 " />
