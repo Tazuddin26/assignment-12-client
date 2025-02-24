@@ -159,7 +159,7 @@ const FeatureApartment = () => {
             <BiSolidBuildingHouse size={68} className="text-indigo-900 w-28 " />
           </div>
         </div>
-        <div className="container mx-auto space-y-12">
+        <div className="container mx-auto ">
           <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
             <img
               src="https://i.ibb.co.com/jvr1Cff/lobby.jpg"

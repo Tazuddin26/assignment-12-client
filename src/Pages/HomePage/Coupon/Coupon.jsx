@@ -36,9 +36,7 @@ const Coupon = () => {
                 </span>
               </p>
               <h2 className="text-2xl text-center font-semibold text-gray-500 sm:text-3xl dark:text-pink-700">
-                {coupon?.discount} % Off
-                <span className="text-sm font-medium text-gray-600">
-                  ValidTill:{coupon?.validDate}
+                {coupon?.discount} % Off <span className="text-sm font-medium text-gray-600"> ValidTill:{coupon?.validDate}
                 </span>
               </h2>
               <p>{coupon.description}</p>

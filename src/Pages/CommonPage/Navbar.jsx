@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import {
@@ -10,8 +10,6 @@ import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import UseAuth from "../../Hook/useAuth";
 import UseAdmin from "../../Hook/useAdmin";
-import { TbRuler2Off } from "react-icons/tb";
-import UseAgreement from "../../Hook/useAgreement";
 import UseAllAgreements from "../../Hook/useAllAgreements";
 import UseRole from "../../Hook/useRole";
 import { MdDashboard } from "react-icons/md";
@@ -20,7 +18,7 @@ const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const [agreement] = UseAllAgreements();
   const [role] = UseRole();
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const { isAdmin, isMember, isLoading } = UseAdmin();
@@ -29,19 +27,38 @@ const Navbar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
   return (
-    <div className=" ">
+    <div>
       <nav className="relative  ">
         <div className=" fixed z-10 bg-opacity-30 w-full top-0">
-          <div className="lg:flex lg:items-center lg:justify-between bg-gray-800 px-6 py-2 shadow-md shadow-green-800 ">
+          <div
+            className={`fixed top-0 w-full transition-all duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md shadow-green-800  ${
+              isScrolled ? "bg-green-800 shadow-lg  text-gray-200" : "bg-gray-50 text-gray-800"
+            }`}
+          >
             <div className="flex items-center justify-between">
               <div>
-                <BiBuildingHouse size={38} className="text-green-600 " />
-                <p className="font-abel text-2xl dark:text-white">Dream Rent</p>
+                <BiBuildingHouse
+                  size={38}
+                  className="text-green-600 dark:text-gray-800 "
+                />
+                <p className="font-abel text-2xl  ">Dream Rent</p>
               </div>
               {/* <!-- Mobile menu button --> */}
               <div className="flex lg:hidden">
@@ -62,22 +79,28 @@ const Navbar = () => {
 
             {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
             <div
-              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out dark:bg-gray-800  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
+              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
                 open
                   ? "translate-x-0 opacity-100"
                   : "opacity-0 -translate-x-full"
               }`}
             >
-              <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 font-tauri text-lg">
+              <div
+                className={`flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 font-tauri text-lg ${
+                  isScrolled
+                    ? " text-gray-200"
+                    : "text-gray-800"
+                }`}
+              >
                 <Link
                   to="/"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors dark:text-white duration-300 transform rounded-md lg:mt-0 "
+                  className="px-3 py-2 mx-3 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Home
                 </Link>
                 <Link
                   to="/apartments"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-white transition-colors duration-300 transform rounded-md lg:mt-0  "
+                  className="px-3 py-2 mx-3 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0  "
                 >
                   Apartments
                 </Link>
@@ -90,7 +113,7 @@ const Navbar = () => {
                 >
                   <IoIosNotificationsOutline
                     size={32}
-                    className="dark:text-yellow-300 "
+                    className="dark:text-yellow-600 "
                   />
                 </button>{" "}
                 {role === "admin" ? (
