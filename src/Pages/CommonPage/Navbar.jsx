@@ -95,14 +95,14 @@ const Navbar = () => {
                     <RxCross1
                       size={24}
                       className={` ${
-                        isScrolled ? " text-gray-200" : "text-gray-800"
+                        isScrolled ? " text-gray-200" : ""
                       }`}
                     />
                   ) : (
                     <HiOutlineMenuAlt4
                       size={24}
                       className={` ${
-                        isScrolled ? " text-gray-200" : "text-gray-800"
+                        isScrolled ? " text-gray-200" : ""
                       }`}
                     />
                   )}
@@ -112,7 +112,7 @@ const Navbar = () => {
 
             {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
             <div
-              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all bg-green-200 duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
+              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all bg-green-800 duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
                 open
                   ? "translate-x-0 opacity-100"
                   : "opacity-0 -translate-x-full"
