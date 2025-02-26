@@ -57,3 +57,40 @@ MAIN FEATURE IN THIS WEBSITE:
 
 
 
+<h3>Install Dependencies: </h3>
+  Install the required dependencies for both the client and server:
+
+    # Install client dependencies
+    cd client
+    npm install
+
+    # Install server dependencies
+    cd ../server
+    npm install
+
+<h3>Technologies Used: </h3>
+ 
+    Frontend: react-router-Dom 6.28v,@hello-pangea/dnd,Transtack Query, Axios,firebase,react-icons,react-spinners,socket.io-client,sweetalert2
+    Backend: Express, Socket.IO, MongoDB,Cors
+    State Management: React Query (TanStack Query)
+
+<h3> Installation steps:</h3>
+
+1.  Clone using the following repo link
+
+        Client Side: https://github.com/Tazuddin26/assignment-12-client.git
+
+        Server Side: https://github.com/Tazuddin26/assignment-12-server.git
+
+
+2. Go to the project folder and run npm install
+        
+            cd my-first-project
+            npm install
+3.  Now run your app
+
+            npm run dev
+
+
+
+
