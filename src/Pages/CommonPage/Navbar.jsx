@@ -7,21 +7,27 @@ import {
   IoIosNotificationsOutline,
 } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UseAuth from "../../Hook/useAuth";
 import UseAdmin from "../../Hook/useAdmin";
 import UseAllAgreements from "../../Hook/useAllAgreements";
 import UseRole from "../../Hook/useRole";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdOutlineNightlightRound } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
+import UseMember from "../../Hook/useMember";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const [agreement] = UseAllAgreements();
-  const [role] = UseRole();
+  const [role, isRoleLoading] = UseRole();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const { isAdmin, isMember, isLoading } = UseAdmin();
+  const [isAdmin, isAdminLoading] = UseAdmin();
+  const [isMember] = UseMember();
+
+  // console.log({ isAdmin });
   const handleLogout = () => {
     signOutUser()
       .then(() => {})
@@ -35,12 +41,29 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (isLoading) {
+  //Dark light page
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  if (isRoleLoading || isAdminLoading) {
     return <div>Loading...</div>;
   }
   return (
@@ -49,16 +72,16 @@ const Navbar = () => {
         <div className=" fixed z-10 bg-opacity-30 w-full top-0">
           <div
             className={`fixed top-0 w-full transition-all duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md shadow-green-800  ${
-              isScrolled ? "bg-green-800 shadow-lg  text-gray-200" : "bg-gray-50 text-gray-800"
+              isScrolled ? "bg-green-800 shadow-lg " : "  text-bg-200"
             }`}
           >
             <div className="flex items-center justify-between">
               <div>
                 <BiBuildingHouse
                   size={38}
-                  className="text-green-600 dark:text-gray-800 "
+                  className="text-green-600 dark:text-gary-600 "
                 />
-                <p className="font-abel text-2xl  ">Dream Rent</p>
+                <p className="font-abel text-2xl">Dream Rent</p>
               </div>
               {/* <!-- Mobile menu button --> */}
               <div className="flex lg:hidden">
@@ -69,9 +92,19 @@ const Navbar = () => {
                   aria-label="toggle menu"
                 >
                   {open ? (
-                    <RxCross1 size={24} className="dark:text-white" />
+                    <RxCross1
+                      size={24}
+                      className={` ${
+                        isScrolled ? " text-gray-200" : "text-gray-800"
+                      }`}
+                    />
                   ) : (
-                    <HiOutlineMenuAlt4 size={24} className="dark:text-white" />
+                    <HiOutlineMenuAlt4
+                      size={24}
+                      className={` ${
+                        isScrolled ? " text-gray-200" : "text-gray-800"
+                      }`}
+                    />
                   )}
                 </button>
               </div>
@@ -79,18 +112,14 @@ const Navbar = () => {
 
             {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
             <div
-              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
+              className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all bg-green-200 duration-300 ease-in-out  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
                 open
                   ? "translate-x-0 opacity-100"
                   : "opacity-0 -translate-x-full"
               }`}
             >
               <div
-                className={`flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 font-tauri text-lg ${
-                  isScrolled
-                    ? " text-gray-200"
-                    : "text-gray-800"
-                }`}
+                className={`flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 font-tauri text-lg`}
               >
                 <Link
                   to="/"
@@ -124,6 +153,22 @@ const Navbar = () => {
                   ""
                 )}
               </div>
+              <label className="swap swap-rotate lg:mr-4 mr-4">
+                <input
+                  className="hidden"
+                  type="checkbox"
+                  onChange={handleToggle}
+                  checked={theme === "light" ? false : true}
+                />
+                <CiLight
+                  size={20}
+                  className="swap-on h-6 w-6 fill-current border bg-slate-50 rounded-full border-white"
+                />
+                <MdOutlineNightlightRound
+                  size={20}
+                  className="swap-off transition duration-300 ease-in-out -rotate-45 h-6 w-6 fill-current border bg-slate-200 rounded-full border-stone-950 "
+                />
+              </label>
               <div className="relative inline-block ">
                 {/* <!-- Dropdown toggle button --> */}
                 <button
@@ -143,15 +188,7 @@ const Navbar = () => {
 
                 {/* <!-- Dropdown menu --> */}
                 {isOpen && (
-                  <div
-                    x-transition:enter="transition ease-out duration-100"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-100"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
-                    className="absolute lg:right-0  z-20 w-64 lg:mt-6 overflow-hidden origin-top-right  bg-white border border-green-600  rounded-md shadow-lg sm:w-80 dark:bg-gray-800"
-                  >
+                  <div className="absolute lg:right-0  z-20 w-64 lg:mt-6 overflow-hidden origin-top-right  bg-white border border-green-600  rounded-md shadow-lg sm:w-80 dark:bg-gray-800">
                     <div className="py-2">
                       <a className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
                         <img
@@ -175,19 +212,45 @@ const Navbar = () => {
                                   size={20}
                                   className="text-green-600"
                                 />
-                                Dashboard
+                                Dashboard Admin
                               </Link>
                             )}
                             {user && isMember && (
                               <Link to="/dashboard/memberProfile">
-                                Dashboard
+                                Dashboard Member
                               </Link>
                             )}
                             {user && !isAdmin && !isMember ? (
-                              <Link to="/dashboard/agreement">Dashboard</Link>
+                              <Link to="/dashboard/agreement">Dashboard User</Link>
                             ) : null}
                           </span>
                         </p>
+                        {/* <p className="mx-2 text-xl font-abel text-gray-600 dark:text-white font-bold">
+                          {user ? (
+                            user.isAdmin ? (
+                              <Link
+                                to="/dashboard/dashboardHome"
+                                className="flex items-center gap-2"
+                              >
+                                <MdDashboard
+                                  size={20}
+                                  className="text-green-600"
+                                />
+                                Dashboard Admin
+                              </Link>
+                            ) : user.isMember ? (
+                              <Link to="/dashboard/memberProfile">
+                                Dashboard Member
+                              </Link>
+                            ) : (
+                              <Link to="/dashboard/agreement">
+                                Dashboard User
+                              </Link>
+                            )
+                          ) : null}
+                        </p> */}
+
+                        <div className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"></div>
                       </div>
                       <div className="flex items-center px-4 py-3 -mx-2 transition-colors duration-300 transform border-b border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700">
                         <p className="mx-2 text-xl font-abel text-gray-600 dark:text-white">
@@ -223,6 +286,7 @@ const Navbar = () => {
                         </p>
                       </div>
                     </div>
+
                     <a className="block py-4  font-bold text-center text-white bg-gray-800 dark:bg-green-700 hover:underline"></a>
                   </div>
                 )}

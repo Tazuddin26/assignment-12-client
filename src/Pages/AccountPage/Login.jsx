@@ -30,6 +30,7 @@ const Login = () => {
         timer: 1500,
       });
       navigate(from, { replace: true });
+      window.scrollTo(0, 0);
     });
   };
   const handleGoogleSignIn = () => {
@@ -51,8 +52,30 @@ const Login = () => {
           });
         }
         navigate("/");
+        window.scrollTo(0, 0);
       });
     });
+  };
+  const handleLoginUser = (role) => {
+    let email = "";
+    let password = "";
+
+    if (role === "user") {
+      email = "bbb@bbb.com";
+      password = "123456@Aa";
+    } else if (role === "admin") {
+      email = "abc@gmail.com";
+      password = "123456@Aa";
+    }
+    document.getElementById("LoggingEmailAddress").value = email;
+    document.getElementById("loggingPassword").value = password;
+    // handleLogin({
+    //   preventDefault: () => {},
+    //   target: {
+    //     email: { value: email },
+    //     password: { value: password },
+    //   },
+    // });
   };
 
   return (
@@ -73,7 +96,7 @@ const Login = () => {
           <div className="">
             <button
               onClick={handleGoogleSignIn}
-              className="btn w-full btn-info font-bold text-center"
+              className="btn w-full btn-info font-bold font-abel text-lg text-center"
             >
               <FcGoogle size={28} />
               Sign in with Google
@@ -81,13 +104,13 @@ const Login = () => {
           </div>
 
           <div className="flex items-center justify-between mt-4">
-            <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
+            <span className="w-1/5 border-b dark:border-green-600 lg:w-1/4"></span>
 
             <a className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">
               or login with email
             </a>
 
-            <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
+            <span className="w-1/5 border-b dark:border-green-600 lg:w-1/4"></span>
           </div>
 
           <div className="mt-4">
@@ -141,9 +164,27 @@ const Login = () => {
               or sign up
             </Link>
 
-            <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            <span className="w-1/5 border-b dark:border-green-600 md:w-1/4"></span>
           </div>
         </form>
+        <div className="flex gap-3 justify-center">
+          <div className="mt-4">
+            <button
+              onClick={() => handleLoginUser("user")}
+              className="px-4 text-xl font-abel btn hover:text-white btn-accent"
+            >
+              Default User
+            </button>
+          </div>
+          <div className="mt-4">
+            <button
+              onClick={() => handleLoginUser("admin")}
+              className="px-4 text-xl font-abel btn hover:text-white btn-primary"
+            >
+              Default Admin
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

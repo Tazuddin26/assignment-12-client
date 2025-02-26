@@ -10,12 +10,12 @@ const ApartmentSlider = () => {
   return (
     <div className="">
       <div className="my-10 relative">
-        <h1 className="text-3xl font-tauri text-center textc-center">
+        <h1 className="text-3xl font-tauri text-center">
           Standard Value,Silent Environment <br /> & Most Tide Security!
         </h1>
 
         <div className="divider divider-success lg:mx-36 mx-4 my-10 ">
-          <BiSolidBuildingHouse size={68} className="text-gray-900 w-28 " />
+          <BiSolidBuildingHouse size={68} className=" w-28 " />
         </div>
         <div className="bottom-2 right-0 animate-bounce z-10 fixed">
           <Coupon />

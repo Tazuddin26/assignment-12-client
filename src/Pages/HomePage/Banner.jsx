@@ -5,7 +5,7 @@ import TypeWriterEffect from "react-typewriter-effect";
 const Banner = () => {
   return (
     <motion.div
-      className="hero justify-start min-h-[620px]"
+      className="hero justify-start min-h-[700px]"
       style={{
         backgroundImage: "url(https://i.ibb.co.com/Vm0C6hB/santa.jpg)",
       }}

@@ -152,11 +152,11 @@ const FeatureApartment = () => {
           </div>
         </div>
       </section> */}
-      <section className="p-4 lg:p-8 dark:text-gray-800">
+      <section className="p-4 lg:p-8 ">
         <div className="my-6">
           <h1 className="text-3xl font-abel text-center">FEATURES</h1>
           <div className="divider divider-neutral lg:mx-36 mx-4 my-10 ">
-            <BiSolidBuildingHouse size={68} className="text-indigo-900 w-28 " />
+            <BiSolidBuildingHouse size={68} className="text-indigo-600 w-28 " />
           </div>
         </div>
         <div className="container mx-auto ">
@@ -167,7 +167,7 @@ const FeatureApartment = () => {
               className="h-80 dark:bg-gray-500 aspect-video"
             />
             <div className="flex flex-col justify-center flex-1 p-6 dark:bg-green-100">
-              <h3 className="flex gap-3 text-4xl font-abel font-bold">
+              <h3 className="flex gap-3 text-4xl font-abel font-bold dark:text-gray-800">
                 <FaSquarespace size={44} className="text-pink-800" />
                 Luxurious Lobby
               </h3>
@@ -185,7 +185,7 @@ const FeatureApartment = () => {
               className="h-80 dark:bg-gray-500 aspect-video"
             />
             <div className="flex flex-col justify-center flex-1 p-6 dark:bg-sky-100">
-              <h3 className="flex gap-3 text-4xl font-bold font-abel">
+              <h3 className="flex gap-3 text-4xl font-bold font-abel dark:text-gray-800">
                 <RiSofaFill size={44} className="text-pink-800" />
                 Furnished Community Spaces
               </h3>
@@ -202,7 +202,7 @@ const FeatureApartment = () => {
               className="h-80 dark:bg-gray-500 aspect-video"
             />
             <div className="flex flex-col justify-center flex-1 p-6 dark:bg-rose-100">
-              <h3 className="flex gap-3 text-4xl font-abel  font-bold">
+              <h3 className="flex gap-3 text-4xl font-abel  font-bold dark:text-gray-800">
                 <BiSolidCctv size={44} className="text-pink-800" />
                 CCTV Surveillance Monitoring System.
               </h3>

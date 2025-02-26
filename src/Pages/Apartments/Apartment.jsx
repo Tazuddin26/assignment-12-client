@@ -46,11 +46,11 @@ const Apartment = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-10 mt-32">
-      <h1 className="font-tauri text-4xl text-center text-gray-800">
+      <h1 className="font-tauri text-4xl text-center ">
         Apartments ShowCase
       </h1>
-      <div className="divider divider-neutral lg:mx-36 mx-4 my-10 ">
-        <BiSolidBuildingHouse size={68} className="text-indigo-900 w-28 " />
+      <div className="divider divider-accent lg:mx-36 mx-4 my-10 ">
+        <BiSolidBuildingHouse size={68} className="text-indigo-600 w-28 " />
       </div>
       <div>
         <div className="flex flex-col lg:flex-row my-6 items-center gap-6 justify-center">

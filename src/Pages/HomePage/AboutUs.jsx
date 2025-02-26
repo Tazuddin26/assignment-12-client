@@ -4,13 +4,13 @@ import { BiSolidBuildingHouse, BiSolidSelectMultiple } from "react-icons/bi";
 const AboutUs = () => {
   return (
     <div>
-      <section className=" dark:text-gray-800 my-6">
-      <h2 className="text-4xl text-center font-bold font-abel">
-                About The Apartment
-              </h2>
-      <div className="divider divider-info lg:mx-36 mx-4  ">
-        <BiSolidBuildingHouse size={68} className="text-lime-500 w-28 " />
-      </div>
+      <section className="  my-6">
+        <h2 className="text-4xl text-center font-bold font-abel">
+          About The Apartment
+        </h2>
+        <div className="divider divider-info lg:mx-36 mx-4  ">
+          <BiSolidBuildingHouse size={68} className="text-lime-500 w-28 " />
+        </div>
         <div className="container px-6  mx-auto">
           <div className="grid items-center gap-4 xl:grid-cols-5">
             <div className="max-w-2xl mx-auto my-8 space-y-6 text-center xl:col-span-2 xl:text-left">

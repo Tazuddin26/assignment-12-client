@@ -4,8 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        abel: ["Abel", "serif"], // Custom font family
-        tauri: ["Tauri", "serif"], // Custom font family
+        abel: ["Abel", "serif"], 
+        tauri: ["Tauri", "serif"], 
+      },
+      colors: {
+        'custom-light': '#4B5563', // লাইট রং
+        'custom-dark': '#F3F4F6', // ডার্ক রং
       },
     },
   },

@@ -13,6 +13,8 @@ const UseMember = () => {
       return res.data?.member;
     },
   });
+  // console.log({ isMember });
+  // console.log(user);
   return [isMember, isMemberLoading];
 };
 

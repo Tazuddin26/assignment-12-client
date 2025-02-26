@@ -7,7 +7,8 @@ import { FaUsers } from "react-icons/fa";
 import { FaUsersGear } from "react-icons/fa6";
 import { GrAnnounce } from "react-icons/gr";
 import { RiCoupon3Line } from "react-icons/ri";
-import StatisticsChart from "./StatisticsChart";
+import StatisticsBarChart from "./StatisticsBarChart";
+// import StatisticsChart from "./StatisticsChart";
 const AdminProfile = () => {
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
@@ -123,7 +124,8 @@ const AdminProfile = () => {
         </div>
       </section>
     <div className="">
-    <StatisticsChart/>
+    {/* <StatisticsChart/> */}
+    <StatisticsBarChart/>
     </div>
     </div>
   );

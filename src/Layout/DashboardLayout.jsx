@@ -19,9 +19,7 @@ const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   //TODO : pending
   const { isLoading } = UseAdmin();
-  // const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
+
   if (isLoading) {
     return <div className="flex justify-center text-red-700">Loading...</div>;
   }
@@ -77,7 +75,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Dashboard Content */}
-      <div className="lg:w-10/12 justify-end bg-gray-100 dark:bg-gray-100">
+      <div className="lg:w-10/12 justify-end ">
         <div className="px-6">
           {" "}
           <DashboardNavbar
