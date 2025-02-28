@@ -51,7 +51,7 @@ const DashboardLayout = () => {
               {role === "member" && <Member />}
               {role === "admin" && <Admin />}
               {role !== "member" && role !== "admin" && <User />}
-
+              <hr className="my-6 border-gray-200 dark:border-gray-600" />
               <a className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200">
                 <IoHomeSharp size={20} />
                 <NavLink to="/" className="mx-4 font-medium ">
