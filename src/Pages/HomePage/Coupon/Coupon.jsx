@@ -10,7 +10,7 @@ const Coupon = () => {
       return res.data;
     },
   });
-  console.log(coupons);
+  console.log("coupons", coupons);
  
   return (
     coupons?

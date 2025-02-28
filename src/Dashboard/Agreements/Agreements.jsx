@@ -1,16 +1,33 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../Hook/useAuth";
-import { BiBuildingHouse } from "react-icons/bi";
+import UseAxiosPublic from "../../Hook/useAxiosPublic";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
-import UseAgreement from "../../Hook/useAgreement";
-import UseRole from "../../Hook/useRole";
+// import { BiBuildingHouse } from "react-icons/bi";
+// import UseAgreement from "../../Hook/useAgreement";
+// import UseRole from "../../Hook/useRole";
 
 const Agreements = () => {
-  const [agreement, refetch] = UseAgreement();
+  // const [agreement, refetch] = UseAgreement();
   const { user, loading } = UseAuth();
-  const [role] = UseRole();
+  // const [role] = UseRole();
+  // const [profile, setProfile] = useState(null);
+  const axiosPublic = UseAxiosPublic();
   const axiosSecure = UseAxiosSecure();
-  const [profile, setProfile] = useState(null);
+  const { data: userInfo, refetch } = useQuery({
+    queryKey: ["userInfo"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/users/${user?.email}`);
+      if (res.status === 404) {
+        throw new Error("User not found");
+      }
+      return res.data;
+    },
+    onError: (err) => {
+      console.error("Error fetching user data:", err);
+    },
+  });
+  console.log("user data", userInfo);
 
   if (!user || !user.email) {
     return <p className="text-red-600 text-center mt-40">{loading}</p>;
@@ -32,21 +49,26 @@ const Agreements = () => {
           </div>
         </div>
         <div className="border-b w-full border-green-700 my-4 "></div>
-        <div className="mt-6 font-abel text-2xl font-bold text-white">
-          <p className="mt-2  font-semibold  md:mt-0">
-            User Name : {user?.displayName}
-          </p>
-          <p className="mt-2   ">User Email : {user?.email}</p>
+        <div className="flex justify-evenly mt-6 font-abel text-2xl font-bold text-white">
+          <div className="">
+            <p className="mt-2  font-semibold  md:mt-0">
+              User Name : {user?.displayName}
+            </p>
+            <p className="mt-2   ">User Email : {user?.email}</p>
+          </div>
+          <div className="">
+            <p>Mobile : {userInfo?.phone}</p>
+            <p>Address : {userInfo?.address}</p>
+          </div>
         </div>
-
         <div className="flex mt-4 ">
           <div
             className="text-lg space-y-3 font-medium text-blue-600 dark:text-blue-300"
             tabIndex="0"
           >
-            <p className="font-tauri text-2xl">
+            {/* <p className="font-tauri text-2xl">
               Agreement Accept date : <span className="font-abel"></span>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
             <Apartments />
           </PrivateRoute>
         ),
-      },  
+      },
     ],
   },
   {
@@ -147,7 +147,9 @@ export const router = createBrowserRouter([
 
         element: <ManageCoupons />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5100/couponUpdate/${params.id}`),
+          fetch(
+            `https://assignment-12-server-gamma-six.vercel.app/couponUpdate/${params.id}`
+          ),
       },
       {
         path: "allPaymentHistory",

@@ -7,6 +7,8 @@ import UseAxiosPublic from "../../Hook/useAxiosPublic";
 import Swal from "sweetalert2";
 import { MdOutlineMail } from "react-icons/md";
 import { TbLockPassword } from "react-icons/tb";
+import { PiAddressBookThin } from "react-icons/pi";
+import { CiPhone } from "react-icons/ci";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const SignUp = () => {
@@ -45,6 +47,8 @@ const SignUp = () => {
           name: data.username,
           email: registerUser.email,
           image: imageUrl,
+          phone: data.phone,
+          address: data.address,
         };
         const postRes = await axiosPublic.post("/users", userInformation);
         if (postRes.data.insertedId) {
@@ -65,7 +69,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="flex w-full my-10 mt-40  max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
+    <div className="flex w-full my-10 mt-24  max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
       <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/jTwdcv4/building.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
@@ -97,7 +101,7 @@ const SignUp = () => {
           </div>
           <label
             htmlFor="dropzone-file"
-            className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer "
+            className="flex items-center px-3 py-3 mx-auto mt-4 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer "
           >
             <FiUpload size={24} className=" text-gray-700" />
 
@@ -114,6 +118,42 @@ const SignUp = () => {
               <span className="text-red-500 ">This field is required</span>
             )}
           </label>
+          <div className="mt-4">
+            <div className="  items-center flex">
+              <span className="absolute">
+                <CiPhone size={24} className="mx-3 text-gray-700 " />
+              </span>
+              <input
+                {...register("phone", { required: true })}
+                type="phone number"
+                name="phone"
+                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:text-gray-700  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                placeholder="phone number"
+                required
+              />
+              {errors.phone && (
+                <span className="text-red-500 ">This field is required</span>
+              )}
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="  items-center flex">
+              <span className="absolute">
+                <PiAddressBookThin size={24} className="mx-3 text-gray-700 " />
+              </span>
+              <input
+                {...register("address", { required: true })}
+                type="address"
+                name="address"
+                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:text-gray-700  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                placeholder="Address"
+                required
+              />
+              {errors.address && (
+                <span className="text-red-500 ">This field is required</span>
+              )}
+            </div>
+          </div>
           <div className="mt-4">
             <div className="  items-center flex">
               <span className="absolute">

@@ -17,14 +17,14 @@ const MakePayment = () => {
   const [discount, setDiscount] = useState(0);
   const [paymentDate, setPaymentDate] = useState(new Date());
   const {
-    agreementId,
+    // agreementId,
     userName,
     userEmail,
     floorNo,
     blockName,
     apartmentNo,
     rent,
-    status,
+    // status,
   } = agreements || {};
 
   const {
@@ -61,8 +61,11 @@ const MakePayment = () => {
   const handleCouponApply = async (e) => {
     e.preventDefault();
     try {
-      const res = await axiosSecure.post("/couponCode", { couponCode: coupon });
-      console.log("coupon code", res.data);
+      const res = await axiosSecure.post("/couponCode", {
+        couponCode: coupon,
+        couponStatus: "CodeUsed",
+      });
+      console.log("coupon code status", res.data);
       if (res.data && res.data.discount) {
         setDiscount(res.data.discount);
         Swal.fire({

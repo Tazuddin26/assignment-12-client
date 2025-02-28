@@ -118,7 +118,13 @@ const ManageCoupons = () => {
     }
   };
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+      <div className="flex justify-center items-center mt-28 ">
+      <p>Loading...</p>
+      </div>
+      </>
+    );
   }
   return (
     <div>
