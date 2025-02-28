@@ -13,6 +13,8 @@ const Apartment = () => {
   const [apartments, setApartments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  const [sortData, setSortData] = useState(1);
+  console.log("sorted data", sortData);
   const handleSearch = () => {
     setSearch(searchText);
   };
@@ -23,13 +25,14 @@ const Apartment = () => {
         ? rentRange.split("-").map(Number)
         : [0, 1000000];
       try {
-        const res = await axiosPublic.get("/apartments", {
+        const res = await axiosPublic.get(`/apartments`, {
           params: {
             min_rent,
             max_rent,
             search: search || "",
             limit: 8,
             page: currentPage,
+            sort: sortData ,
           },
         });
         // console.log(res.data);
@@ -42,18 +45,31 @@ const Apartment = () => {
     };
     getData();
     console.log("Current Page:", currentPage);
-  }, [rentRange, search, currentPage]);
+  }, [rentRange, search, currentPage, sortData]);
 
   return (
     <div className="max-w-7xl mx-auto my-10 mt-32">
-      <h1 className="font-tauri text-4xl text-center ">
-        Apartments ShowCase
-      </h1>
+      <h1 className="font-tauri text-4xl text-center ">Apartments ShowCase</h1>
       <div className="divider divider-accent lg:mx-36 mx-4 my-10 ">
         <BiSolidBuildingHouse size={68} className="text-indigo-600 w-28 " />
       </div>
       <div>
         <div className="flex flex-col lg:flex-row my-6 items-center gap-6 justify-center">
+          <div>
+            <select
+              onChange={(e) => setSortData(e.target.value)}
+              defaultValue="default"
+              name="rentRange"
+              id="category"
+              className="border p-3 input input-bordered input-success rounded-md"
+            >
+              <option value="default" disabled>
+                Sort By Price
+              </option>
+              <option value="asc">Asending</option>
+              <option value="desc">Desending</option>
+            </select>
+          </div>
           <div>
             <select
               onChange={(e) => setRentRange(e.target.value)}
