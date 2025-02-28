@@ -1,17 +1,12 @@
-// import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import UseAuth from "../../Hook/useAuth";
 import UseAxiosPublic from "../../Hook/useAxiosPublic";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
-// import { BiBuildingHouse } from "react-icons/bi";
 // import UseAgreement from "../../Hook/useAgreement";
-// import UseRole from "../../Hook/useRole";
 
 const Agreements = () => {
   // const [agreement, refetch] = UseAgreement();
   const { user, loading } = UseAuth();
-  // const [role] = UseRole();
-  // const [profile, setProfile] = useState(null);
   const axiosPublic = UseAxiosPublic();
   const axiosSecure = UseAxiosSecure();
   const { data: userInfo, refetch } = useQuery({
