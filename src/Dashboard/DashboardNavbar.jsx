@@ -2,6 +2,7 @@ import React from "react";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+// import ThemeToggle from "../Hook/ThemeToggle";
 import UseAllAgreements from "../Hook/useAllAgreements";
 
 const DashboardNavbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
@@ -10,6 +11,7 @@ const DashboardNavbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     <nav className="relative lg:border-b dark:border-green-500">
       <div className="container px- py-4 mx-auto inset-x-0 flex items-center justify-end">
         <div className=" border flex items-center justify-end">
+          {/* <ThemeToggle /> */}
           {/* <!-- Mobile menu button --> */}
 
           {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
@@ -22,7 +24,6 @@ const DashboardNavbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 {agreement.length}
               </span>
             </a>
-            
           </div>
         </div>
         <div className=" lg:hidden">

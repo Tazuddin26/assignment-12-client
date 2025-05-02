@@ -11,6 +11,7 @@ import UseRole from "../Hook/useRole";
 import { IoHomeSharp } from "react-icons/io5";
 import DashboardNavbar from "../Dashboard/DashboardNavbar";
 import { useState } from "react";
+import { Loader } from "lucide-react";
 
 const DashboardLayout = () => {
   const { user } = UseAuth();
@@ -21,7 +22,11 @@ const DashboardLayout = () => {
   const { isLoading } = UseAdmin();
 
   if (isLoading) {
-    return <div className="flex justify-center text-red-700">Loading...</div>;
+    return (
+      <div className="flex justify-center text-red-700">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div className="lg:flex justify-between ">

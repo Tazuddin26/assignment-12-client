@@ -15,6 +15,7 @@ import UseRole from "../../Hook/useRole";
 import { MdDashboard, MdOutlineNightlightRound } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import UseMember from "../../Hook/useMember";
+import { Loader } from "lucide-react";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
@@ -64,7 +65,12 @@ const Navbar = () => {
   };
 
   if (isRoleLoading || isAdminLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center">
+        {" "}
+        <Loader size={32} />
+      </div>
+    );
   }
   return (
     <div>
@@ -72,7 +78,7 @@ const Navbar = () => {
         <div className=" fixed z-10 bg-opacity-30 w-full top-0">
           <div
             className={`fixed top-0 w-full transition-all duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md shadow-green-800  ${
-              isScrolled ? "bg-green-800 shadow-lg " : "  text-bg-200"
+              isScrolled ? "bg-green-700 shadow-lg " : "  text-bg-200"
             }`}
           >
             <div className="flex items-center justify-between">
@@ -94,16 +100,12 @@ const Navbar = () => {
                   {open ? (
                     <RxCross1
                       size={24}
-                      className={` ${
-                        isScrolled ? " text-gray-200" : ""
-                      }`}
+                      className={` ${isScrolled ? " text-gray-200" : ""}`}
                     />
                   ) : (
                     <HiOutlineMenuAlt4
                       size={24}
-                      className={` ${
-                        isScrolled ? " text-gray-200" : ""
-                      }`}
+                      className={` ${isScrolled ? " text-gray-200" : ""}`}
                     />
                   )}
                 </button>
@@ -137,13 +139,10 @@ const Navbar = () => {
 
               <div className="flex items-center mt-4 lg:mt-0">
                 <button
-                  className=" mx-4  relative text-gray-600 transition-colors duration-300 transform lg:block  hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
+                  className=" mx-4  relative transition-colors duration-300 transform lg:block  hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
                   aria-label="show notifications"
                 >
-                  <IoIosNotificationsOutline
-                    size={32}
-                    className="dark:text-yellow-600 "
-                  />
+                  <IoIosNotificationsOutline size={32} className=" " />
                 </button>{" "}
                 {role === "admin" ? (
                   <span className="absolute w-4 h-4 p-2 border lg:top-2 lg:left-80 left-14 top-32 text-pink-600 font-bold  text-sm bg-green-200 rounded-full items-center flex justify-center">
@@ -221,7 +220,9 @@ const Navbar = () => {
                               </Link>
                             )}
                             {user && !isAdmin && !isMember ? (
-                              <Link to="/dashboard/agreement">Dashboard User</Link>
+                              <Link to="/dashboard/agreement">
+                                Dashboard User
+                              </Link>
                             ) : null}
                           </span>
                         </p>
