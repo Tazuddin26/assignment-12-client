@@ -46,9 +46,7 @@ const Amenities = () => {
     <section className="my-10 " id="amenities">
       <div className="container mx-auto text-center">
         <div className="divider divider-info lg:mx-36 mx-4  ">
-          <h2 className="text-4xl dark:text-white text-gray-700 font-bold font-abel mb-2">
-            Amenities
-          </h2>
+          <h2 className="text-4xl font-bold font-abel mb-2">Amenities</h2>
         </div>
 
         <p className="dark:text-white text-gray-700 mb-6 font-tauri">
@@ -62,10 +60,10 @@ const Amenities = () => {
               className="p-6 bg-white/10 rounded-xl shadow-md text-center hover:shadow-lg transition"
             >
               <div className="text-blue-600 mb-4">{amenity.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 font-abel dark:text-white text-gray-700">
+              <h3 className="text-xl font-semibold mb-2 font-abel ">
                 {amenity.title}
               </h3>
-              <p className="dark:text-white text-gray-700">{amenity.desc}</p>
+              <p className="">{amenity.desc}</p>
             </div>
           ))}
         </div>

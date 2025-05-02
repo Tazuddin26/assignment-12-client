@@ -36,23 +36,28 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="lg:py-10 mt-6">
+    <section className="lg:py-10 mt-6 ">
       <div className="container mx-auto text-center px-6 ">
         <div className="lg:flex ">
           <div className="lg:w-6/12 text-center">
-            <h2 className="text-3xl font-bold mb-6 font-abel">
+            <h2 className="text-3xl font-bold mb-6 font-abel ">
               Frequently Asked Questions
             </h2>
 
             <p className="text-xl font-tauri px-3">
               Find answers to the most common queries about our apartments.
             </p>
-            <p className=" flex justify-center items-center py-6">
-              <RiQuestionMark size={96} className="text-green-500" />
-            </p>
+            <div className=" flex justify-center items-center py-6 ">
+              {/* <RiQuestionMark size={96} className="text-green-500" /> */}
+              <img
+                src="https://i.ibb.co.com/nNr8cxL7/cdd20-81-Pk-OTYk-N2-Y-unsplash.jpg"
+                alt=""
+                className="h-[300px] w-full object-cover mr-4 "
+              />
+            </div>
           </div>
 
-          <div className="lg:w-7/12 mx-auto">
+          <div className="lg:w-7/12 mx-auto lg:mt-20">
             {faqs.map((faq, index) => (
               <div
                 key={index}

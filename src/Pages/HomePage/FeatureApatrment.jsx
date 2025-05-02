@@ -7,9 +7,7 @@ const FeatureApartment = () => {
     <div>
       <section className="p-4 lg:p-8 ">
         <div className="my-6">
-          <h1 className="text-3xl font-abel dark:text-white text-gray-700 text-center">
-            FEATURES
-          </h1>
+          <h1 className="text-3xl font-abel text-center">FEATURES</h1>
           <div className="divider divider-neutral lg:mx-36 mx-4 my-10 ">
             <BiSolidBuildingHouse size={68} className="text-indigo-600 w-28 " />
           </div>

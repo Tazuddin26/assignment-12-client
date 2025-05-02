@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <div>
       <section className="  my-6">
-        <h2 className="text-4xl text-center font-bold font-abel dark:text-white text-gray-700">
+        <h2 className="text-4xl text-center font-bold font-abel">
           About The Apartment
         </h2>
         <div className="divider divider-info lg:mx-36 mx-4  ">
@@ -23,7 +23,7 @@ const AboutUs = () => {
                   className="text-indigo-900 w-28 "
                 />
               </div> */}
-              <p className=" gap-2 dark:text-white text-gray-700 text-2xl font-abel ">
+              <p className=" gap-2 text-2xl font-abel ">
                 Sustainability is evident in the design, incorporating wooden
                 screens and green spaces for a perfect blend of light, privacy,
                 and community interaction.

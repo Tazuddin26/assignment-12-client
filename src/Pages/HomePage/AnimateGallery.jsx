@@ -28,9 +28,7 @@ export default function AnimateGallery() {
   return (
     <div className=" lg:mt-14">
       <div className="divider divider-warning lg:mx-36 mx-4  ">
-        <h1 className="text-4xl font-abel text-center dark:text-white text-gray-700">
-          Amenities Gallery
-        </h1>
+        <h1 className="text-4xl font-abel text-center ">Amenities Gallery</h1>
       </div>
       <div className="relative flex flex-col justify-end h-[400px] lg:p p-4 mt-8">
         <motion.div
@@ -52,7 +50,7 @@ export default function AnimateGallery() {
         </motion.div>
 
         {/* Feature List */}
-        <div className="lg:z-10 lg:w-8/12 w-full lg:ml-56 justify-center grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 lg:gap-6 gap-2 ">
+        <div className="z-10 lg:w-8/12 w-full lg:ml-56 justify-center grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 lg:gap-6 gap-2 ">
           {features.map((feature, index) => (
             <motion.div
               key={feature.id}
