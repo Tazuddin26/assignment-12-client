@@ -79,7 +79,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full my-10 mt-40 bg-gray-800 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
+    <div className="flex w-full my-10 mt-40 bg-white/10 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md lg:max-w-4xl shadow-green-800">
       <div className="hidden bg-cover lg:block rounded-t-full lg:w-1/2 bg-[url('https://i.ibb.co.com/dPZsD92/about.jpg')] "></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 ">
@@ -106,7 +106,7 @@ const Login = () => {
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-green-600 lg:w-1/4"></span>
 
-            <a className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">
+            <a className="text-xs text-center  uppercase hover:underline">
               or login with email
             </a>
 
@@ -115,7 +115,7 @@ const Login = () => {
 
           <div className="mt-4">
             <label
-              className="block mb-2 text-sm font-medium text-gray-600 "
+              className="block mb-2 text-sm font-medium "
               htmlFor="LoggingEmailAddress"
             >
               Email Address
@@ -132,7 +132,7 @@ const Login = () => {
           <div className="mt-4">
             <div className="flex justify-between">
               <label
-                className="block mb-2 text-sm font-medium text-gray-800 "
+                className="block mb-2 text-sm font-medium  "
                 htmlFor="loggingPassword"
               >
                 Password
@@ -157,10 +157,7 @@ const Login = () => {
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-green-600 md:w-1/4"></span>
 
-            <Link
-              to="/signup"
-              className="text-sm text-gray-500 uppercase dark:text-gray-600 hover:underline "
-            >
+            <Link to="/signup" className="text-sm uppercase hover:underline ">
               or sign up
             </Link>
 
