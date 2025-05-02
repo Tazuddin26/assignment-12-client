@@ -13,7 +13,7 @@ const Banner = () => {
       <div className="hero-content text-right text-neutral">
         <div className="md:py-10 pl-6">
           <div className="max-w-md ">
-            <h2 className=" mb-5 text-4xl leading-normal font-tauri dark:text-white font-bold">
+            <h2 className=" mb-5 text-4xl leading-normal font-tauri text-white font-bold">
               <TypeWriterEffect
                 startDelay={1000}
                 cursorColor="#3F3D56"
