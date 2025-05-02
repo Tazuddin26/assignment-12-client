@@ -10,8 +10,8 @@ import UseRole from "../../Hook/useRole";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { MdOutlineSensorOccupied } from "react-icons/md";
-import { GrStatusInfo } from "react-icons/gr";
+import { motion } from "framer-motion";
+
 const Apartments = ({ apartment }) => {
   const { user, loading } = UseAuth();
   const axiosSecure = UseAxiosSecure();
@@ -88,28 +88,84 @@ const Apartments = ({ apartment }) => {
     }
   };
   return (
-    <div>
-      <div className="overflow-hidden rounded-lg hover:border-b-green-800 hover:border-l-green-800 hover:border-r-green-800 border hover:shadow-lg bg-green-50 scale-95 duration-700  transition-all">
-        <img
-          className="object-cover object-center w-full h-44"
-          src={apartment_img}
-          alt="avatar"
-        />
-        <div className="flex items-center px-6 py-1 bg-green-900">
-          <RiSofaLine size={28} className="text-gray-800 dark:text-white" />
-          <h1 className="mx-3 text-lg font-semibold text-white">
-            {furnishing}
-          </h1>
+    // <div>
+    //   <div className="overflow-hidden rounded-lg hover:border-b-green-800 hover:border-l-green-800 hover:border-r-green-800 border hover:shadow-lg bg-green-50 scale-95 duration-700  transition-all">
+    //     <img
+    //       className="object-cover object-center w-full h-44"
+    //       src={apartment_img}
+    //       alt="avatar"
+    //     />
+    //     <div className="flex items-center px-6 py-1 bg-green-900">
+    //       <RiSofaLine size={28} className="text-gray-800 dark:text-white" />
+    //       <h1 className="mx-3 text-lg font-semibold text-white">
+    //         {furnishing}
+    //       </h1>
+    //     </div>
+    //     <div className="px-6 font-abel">
+    //       <p className=" text-gray-700 mt-2 text-xl">{description}</p>
+    //       <div className="flex items-center mt-2 text-gray-700 ">
+    //         <FaRulerCombined size={20} />
+    //         <h1 className="px-2 text-base">{apartment_size} </h1>
+    //       </div>
+    //       <div className="flex items-center text-gray-700">
+    //         <div className="flex items-center mt-4 text-gray-700">
+    //           <IoHomeOutline size={24} />
+    //           <h1 className="px-2 text-sm">{apartment_no}</h1>
+    //         </div>
+    //         <div className="flex items-center mt-4 text-gray-700 ">
+    //           <IoPricetagsOutline size={24} />
+    //           <h1 className="px-2 text-base">
+    //             ${min_rent} - ${max_rent}
+    //           </h1>
+    //         </div>
+    //       </div>
+    //       {/* <div className="flex items-center mt-4 text-gray-700 ">
+    //         <GrStatusInfo size={24} />
+    //         <h1 className="px-2 text-xl">
+    //           Status:{" "}
+    //           <span className="bg-indigo-100 py-1 px-5 rounded-full">
+    //             {status}
+    //           </span>
+    //         </h1>
+    //       </div> */}
+
+    //       <div className="flex justify-end mr-2 my-3">
+    //         <button
+    //           onClick={() => handleAgreement(_id)}
+    //           className="px-6 py-3 border rounded-lg transition-colors duration-500 bg-green-600 hover:bg-green-500"
+    //         >
+    //           {/* {isStatus === "Occupied" ? `${status}` : "Agreement"} */}
+    //           Agreement
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    <motion.div
+      whileHover={{
+        scale: 1.03,
+        rotate: 1,
+        boxShadow: "0px 10px 20px rgba(0, 128, 0, 0.2)",
+      }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="overflow-hidden cursor-pointer rounded-lg border bg-green-50 scale-95 transition-all duration-700"
+    >
+      <img
+        className="object-cover object-center w-full h-44"
+        src={apartment_img}
+        alt="avatar"
+      />
+      <div className="flex items-center px-6 py-1 bg-green-900">
+        <RiSofaLine size={28} className="text-gray-800 dark:text-white" />
+        <h1 className="mx-3 text-lg font-semibold text-white">{furnishing}</h1>
+      </div>
+      <div className="px-6 font-abel">
+        <p className=" text-gray-700 mt-2 text-xl">{description}</p>
+        <div className="flex items-center mt-2 text-gray-700 ">
+          <FaRulerCombined size={20} />
+          <h1 className="px-2 text-base">{apartment_size}</h1>
         </div>
-        <div className="px-6 font-abel">
-          <p className=" text-gray-700 mt-2 text-xl">{description}</p>
-          <div className="flex items-center mt-2 text-gray-700 ">
-            <FaRulerCombined size={20} />
-            <h1 className="px-2 text-base">
-               {apartment_size}{" "}
-            </h1>
-          </div>
-          <div className="flex items-center text-gray-700">
+        <div className="flex items-center text-gray-700">
           <div className="flex items-center mt-4 text-gray-700">
             <IoHomeOutline size={24} />
             <h1 className="px-2 text-sm">{apartment_no}</h1>
@@ -120,29 +176,17 @@ const Apartments = ({ apartment }) => {
               ${min_rent} - ${max_rent}
             </h1>
           </div>
-          </div>
-          {/* <div className="flex items-center mt-4 text-gray-700 ">
-            <GrStatusInfo size={24} />
-            <h1 className="px-2 text-xl">
-              Status:{" "}
-              <span className="bg-indigo-100 py-1 px-5 rounded-full">
-                {status}
-              </span>
-            </h1>
-          </div> */}
-
-          <div className="flex justify-end mr-2 my-3">
-            <button
-              onClick={() => handleAgreement(_id)}
-              className="px-6 py-3 border rounded-lg transition-colors duration-500 bg-green-600 hover:bg-green-500"  
-            >
-              {/* {isStatus === "Occupied" ? `${status}` : "Agreement"} */}
-              Agreement
-            </button>
-          </div>
+        </div>
+        <div className="flex justify-end mr-2 my-3">
+          <button
+            onClick={() => handleAgreement(_id)}
+            className="px-6 py-3 border rounded-lg dark:text-white transition-colors duration-500 bg-green-600 hover:bg-green-500"
+          >
+            Agreement
+          </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
