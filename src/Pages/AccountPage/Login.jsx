@@ -87,7 +87,7 @@ const Login = () => {
           <p className="mt-3 text-2xl text-white text-center font-tauri">
             Welcome back!
           </p>
-          <div className="flex justify-center mx-auto">
+          <div className="flex justify-center mx-auto mb-4">
             <div className="flex items-center mt-2">
               <BiBuildingHouse size={38} className="text-green-800" />
               <p className="font-abel text-white text-2xl ">Dream Rent</p>
@@ -96,7 +96,7 @@ const Login = () => {
           <div className="">
             <button
               onClick={handleGoogleSignIn}
-              className="btn w-full btn-info font-bold font-abel text-lg text-center"
+              className="btn w-full bg-gray-700 text-white hover:bg-green-500 font-bold font-abel text-lg text-center"
             >
               <FcGoogle size={28} />
               Sign in with Google
@@ -149,7 +149,7 @@ const Login = () => {
           </div>
 
           <div className="mt-6">
-            <button className="w-full text-xl font-abel btn hover:text-white btn-success">
+            <button className="w-full text-xl font-abel btn text-white bg-green-500 hover:bg-green-600">
               Sign In
             </button>
           </div>
@@ -171,7 +171,7 @@ const Login = () => {
           <div className="mt-4">
             <button
               onClick={() => handleLoginUser("user")}
-              className="px-4 text-xl font-abel btn hover:text-white btn-accent"
+              className="px-4 text-xl font-abel btn hover:text-white btn-success"
             >
               Default User
             </button>
@@ -179,7 +179,7 @@ const Login = () => {
           <div className="mt-4">
             <button
               onClick={() => handleLoginUser("admin")}
-              className="px-4 text-xl font-abel btn hover:text-white btn-primary"
+              className="px-4 text-xl font-abel btn btn-success hover:text-white "
             >
               Default Admin
             </button>
