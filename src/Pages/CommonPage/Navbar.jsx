@@ -77,9 +77,10 @@ const Navbar = () => {
       <nav className="relative  ">
         <div className=" fixed z-10 bg-opacity-30 w-full top-0">
           <div
-            className={`fixed top-0 w-full transition-all duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md shadow-green-800  ${
-              isScrolled ? "bg-green-700 shadow-lg " : "  text-bg-200"
+            className={`fixed top-0 w-full transition-all bun duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md${
+              isScrolled ? " shadow-lg backdrop-blur-sm" : ""
             }`}
+            ß
           >
             <div className="flex items-center justify-between">
               <div>

@@ -6,20 +6,18 @@ import EmailSend from "./EmailSend";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-800  ">
+    <footer className="bg-white/10   ">
       <div className=" container px-6 py-4 mx-auto ">
         <div className=" flex justify-end items-center">
           <div>
             <BiBuildingHouse size={48} className="text-green-600 " />
-            <p className="font-abel text-3xl dark:text-white">Dream Rent</p>
+            <p className="font-abel text-3xl">Dream Rent</p>
           </div>
         </div>
         <div className="lg:flex items-center justify-between text-center">
           <div className=" lg:mt-4 ">
-            <section className="py-2 dark: dark:text-gray-900">
-              <p className="dark:text-gray-300 text-3xl font-abel text-start ml-4">
-                Gallery
-              </p>
+            <section className="py-2 ">
+              <p className=" text-3xl font-abel text-start ml-4">Gallery</p>
 
               <div className="container grid grid-cols-2 gap-2 p-2 mx-auto md:grid-cols-4 ">
                 <img

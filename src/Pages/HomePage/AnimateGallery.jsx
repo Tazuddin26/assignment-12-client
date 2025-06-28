@@ -54,12 +54,12 @@ export default function AnimateGallery() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.id}
-              className="lg:p-8 p-2 bg-white font-abel text-center shadow-lg rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-all duration-300"
+              className="lg:p-8 p-2 bg-white font-abel text-center shadow-lg rounded-lg cursor-pointer hover:bg-blue-200 hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               onMouseEnter={() => setActiveFeature(index)}
               onMouseLeave={() => setActiveFeature(0)}
             >
-              <h3 className="lg:text-xl font-semibold items-center dark:text-gray-800">
+              <h3 className="lg:text-xl font-semibold items-center text-black">
                 {feature.title}
               </h3>
               <p className="text-sm hidden lg:block">{feature.description}</p>
