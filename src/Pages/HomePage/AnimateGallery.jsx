@@ -67,6 +67,7 @@ export default function AnimateGallery() {
           ))}
         </div>
       </div>
+      ®
     </div>
   );
 }

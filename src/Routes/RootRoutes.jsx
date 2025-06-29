@@ -25,6 +25,7 @@ import AdminRoute from "./AdminRoute";
 import PayPayment from "../Pages/Member/PayPayment";
 // import DashboardHome from "../Dashboard/DashboardHome ";
 import Profile from "../Dashboard/Profile";
+import ApartmentDetails from "../Pages/Apartments/ApartmentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Apartments />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/apartmentDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ApartmentDetails />
           </PrivateRoute>
         ),
       },
@@ -147,9 +156,8 @@ export const router = createBrowserRouter([
 
         element: <ManageCoupons />,
         loader: ({ params }) =>
-          fetch(
-            `https://assignment-12-server-gamma-six.vercel.app/couponUpdate/${params.id}`
-          ),
+          fetch() // `https://assignment-12-server-gamma-six.vercel.app/couponUpdate/${params.id}`
+          `http://localhost:5500/${params.id}`,
       },
       {
         path: "allPaymentHistory",

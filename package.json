@@ -13,7 +13,7 @@
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
     "@meraki-ui/meraki": "^5.0.9",
-    "@tanstack/react-query": "^5.64.1",
+    "@tanstack/react-query": "^5.81.5",
     "apexcharts": "^4.4.0",
     "axios": "^1.7.9",
     "chart.js": "^4.4.7",

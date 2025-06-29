@@ -80,7 +80,6 @@ const Navbar = () => {
             className={`fixed top-0 w-full transition-all bun duration-300 lg:flex lg:items-center lg:justify-between px-6 py-1 shadow-md${
               isScrolled ? " shadow-lg backdrop-blur-sm" : ""
             }`}
-            ß
           >
             <div className="flex items-center justify-between">
               <div>

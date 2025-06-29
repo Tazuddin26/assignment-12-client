@@ -4,7 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { IoHomeOutline, IoPricetagsOutline } from "react-icons/io5";
 import UseAuth from "../../Hook/useAuth";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import UseRole from "../../Hook/useRole";
 import DatePicker from "react-datepicker";
@@ -20,7 +20,7 @@ const Apartments = ({ apartment }) => {
   const [role, isLoading] = UseRole();
   const [agreementDate, setAgreementDate] = useState(new Date());
   const [isStatus, setIsStatus] = useState(apartment.status);
-
+  const id = useParams();
   const {
     _id,
     apartment_img,
@@ -32,6 +32,13 @@ const Apartments = ({ apartment }) => {
     apartment_no,
     status,
   } = apartment;
+  const handleNavigate = () => {
+    const id =
+      typeof apartment._id === "object" ? apartment._id?.$oid : apartment._id;
+    console.log("Navigating to:", id);
+    navigate(`/apartmentDetails/${id}`);
+  };
+
   const { min_rent, max_rent } = apartment.rentRange;
   const handleAgreement = async (id) => {
     setIsStatus("Occupied");
@@ -177,7 +184,10 @@ const Apartments = ({ apartment }) => {
             </h1>
           </div>
         </div>
-        <div className="flex justify-end mr-2 my-3">
+        <div className="flex justify-between items-center mr-2 my-3">
+          <button onClick={handleNavigate} className="btn btn-info">
+            Details
+          </button>
           <button
             onClick={() => handleAgreement(_id)}
             className="px-6 py-3 border rounded-lg dark:text-white transition-colors duration-500 bg-green-600 hover:bg-green-500"

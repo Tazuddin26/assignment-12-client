@@ -6,7 +6,7 @@ import EmailSend from "./EmailSend";
 
 const Footer = () => {
   return (
-    <footer className="bg-white/10   ">
+    <footer className="bg-white/10 dark:bg-gray-800  ">
       <div className=" container px-6 py-4 mx-auto ">
         <div className=" flex justify-end items-center">
           <div>
