@@ -7,11 +7,15 @@ import { GiSofa } from "react-icons/gi";
 import { MdApartment, MdSpaceDashboard } from "react-icons/md";
 import UseAxiosSecure from "../../Hook/useAxiosSecure";
 import { toast } from "react-toastify";
-
+import DatePicker from "react-datepicker";
+import UseAuth from "../../Hook/useAuth";
+import { useState } from "react";
 const ApartmentDetails = () => {
+  const { user, loading } = UseAuth();
   const { id } = useParams();
   const axiosPublic = UseAxiosPublic();
   const axiosSecure = UseAxiosSecure();
+  const [agreementDate, setAgreementDate] = useState(new Date());
 
   const {
     data: apartment = {},
@@ -29,24 +33,25 @@ const ApartmentDetails = () => {
   });
 
   const handleAgreement = async (id) => {
-    // setIsStatus("Occupied");
     console.log("agreement id", id);
     const res = await axiosSecure.patch(`/apartments/${id}`);
     console.log("agreement data modifiy", res.data.modifiedCount);
     if (res.data.modifiedCount) {
-      // setIsStatus(apartment.status);
       toast.success("congratulations for Rent an Apartment!");
     }
     if (user && user?.email) {
       const agreementData = {
-        agreementId: _id,
+        agreementId: apartment._id,
         userName: user?.displayName,
         userEmail: user?.email,
-        floorNo: floor_no || "none",
-        blockName: block_name || "none",
-        apartmentNo: apartment_no || "none",
+        floorNo: apartment.floor_no || "none",
+        blockName: apartment.block_name || "none",
+        apartmentNo: apartment.apartment_no || "none",
         rent:
-          { min_rent: parseInt(min_rent), max_rent: parseInt(max_rent) } || 0,
+          {
+            // min_rent: parseInt(apartment.rentRange?.min_rent)|| 0,
+            max_rent: parseInt(apartment.rentRange?.max_rent) || 0,
+          } || 0,
         agreementDate: agreementDate.toISOString().split("T")[0],
         status: "pending",
       };
@@ -56,16 +61,14 @@ const ApartmentDetails = () => {
         onChange={(date) => setAgreementDate(date)}
         dateFormat="yyyy-MM-dd"
       />;
-      const res = await axiosSecure.post("/agreement", agreementData);
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      try {
+        const res = await axiosSecure.post("/agreement", agreementData);
+        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success("Agreement submitted successfully!");
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || "Agreement failed!");
       }
     } else {
       Swal.fire({
@@ -95,10 +98,7 @@ const ApartmentDetails = () => {
               <h1 className="text-3xl font-semibold tracking-wide  lg:text-4xl">
                 {apartment.description}
               </h1>
-              {/* <p className="mt-4 text-gray-600 dark:text-gray-300">
-                We work with the best remunated glasses dealers in US to find
-                your new glasses.
-              </p> */}
+
               <div className="grid gap-6 mt-8 sm:grid-cols-2">
                 <div className="flex items-center -px-3">
                   <GiCheckMark />
@@ -163,7 +163,7 @@ const ApartmentDetails = () => {
                 onClick={() => handleAgreement(id)}
                 className="px-5 py-2 btn btn-success"
               >
-                agreement
+                Agreement
               </button>
             </div>
           </div>
