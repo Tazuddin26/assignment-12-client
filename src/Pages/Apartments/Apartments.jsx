@@ -11,6 +11,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const Apartments = ({ apartment }) => {
   const { user, loading } = UseAuth();
@@ -40,60 +41,61 @@ const Apartments = ({ apartment }) => {
   };
 
   const { min_rent, max_rent } = apartment.rentRange;
-  const handleAgreement = async (id) => {
-    setIsStatus("Occupied");
-    console.log(id);
-    const res = await axiosSecure.patch(`/apartments/${id}`);
-    console.log("agreement data modifiy", res.data.modifiedCount);
-    if (res.data.success) {
-      setIsStatus(apartment.status);
-    }
-    if (user && user?.email) {
-      const agreementData = {
-        agreementId: _id,
-        userName: user?.displayName,
-        userEmail: user?.email,
-        floorNo: floor_no || "none",
-        blockName: block_name || "none",
-        apartmentNo: apartment_no || "none",
-        rent:
-          { min_rent: parseInt(min_rent), max_rent: parseInt(max_rent) } || 0,
-        agreementDate: agreementDate.toISOString().split("T")[0],
-        status: "pending",
-      };
+  // const handleAgreement = async (id) => {
+  //   setIsStatus("Occupied");
+  //   console.log("agreement id", id);
+  //   const res = await axiosSecure.patch(`/apartments/${id}`);
+  //   console.log("agreement data modifiy", res.data.modifiedCount);
+  //   if (res.data.modifiedCount) {
+  //     setIsStatus(apartment.status);
+  //     toast.success("congratulations for Rent an Apartment!");
+  //   }
+  //   if (user && user?.email) {
+  //     const agreementData = {
+  //       agreementId: _id,
+  //       userName: user?.displayName,
+  //       userEmail: user?.email,
+  //       floorNo: floor_no || "none",
+  //       blockName: block_name || "none",
+  //       apartmentNo: apartment_no || "none",
+  //       rent:
+  //         { min_rent: parseInt(min_rent), max_rent: parseInt(max_rent) } || 0,
+  //       agreementDate: agreementDate.toISOString().split("T")[0],
+  //       status: "pending",
+  //     };
 
-      <DatePicker
-        selected={agreementDate}
-        onChange={(date) => setAgreementDate(date)}
-        dateFormat="yyyy-MM-dd"
-      />;
-      const res = await axiosSecure.post("/agreement", agreementData);
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    } else {
-      Swal.fire({
-        title: "Please Login First!",
-        text: "Are You Login! For Agreement!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes Login!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login", { state: { from: loginLocation } });
-        }
-      });
-    }
-  };
+  //     <DatePicker
+  //       selected={agreementDate}
+  //       onChange={(date) => setAgreementDate(date)}
+  //       dateFormat="yyyy-MM-dd"
+  //     />;
+  //     const res = await axiosSecure.post("/agreement", agreementData);
+  //     console.log(res.data);
+  //     if (res.data.insertedId) {
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: "Your work has been saved",
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     }
+  //   } else {
+  //     Swal.fire({
+  //       title: "Please Login First!",
+  //       text: "Are You Login! For Agreement!",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes Login!",
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         navigate("/login", { state: { from: loginLocation } });
+  //       }
+  //     });
+  //   }
+  // };
   return (
     // <div>
     //   <div className="overflow-hidden rounded-lg hover:border-b-green-800 hover:border-l-green-800 hover:border-r-green-800 border hover:shadow-lg bg-green-50 scale-95 duration-700  transition-all">
@@ -155,6 +157,7 @@ const Apartments = ({ apartment }) => {
         boxShadow: "0px 10px 20px rgba(0, 128, 0, 0.2)",
       }}
       transition={{ type: "spring", stiffness: 300 }}
+      onClick={handleNavigate}
       className="overflow-hidden cursor-pointer rounded-lg border bg-green-50 scale-95 transition-all duration-700"
     >
       <img
@@ -185,15 +188,12 @@ const Apartments = ({ apartment }) => {
           </div>
         </div>
         <div className="flex justify-between items-center mr-2 my-3">
-          <button onClick={handleNavigate} className="btn btn-info">
-            Details
-          </button>
-          <button
+          {/* <button
             onClick={() => handleAgreement(_id)}
             className="px-6 py-3 border rounded-lg dark:text-white transition-colors duration-500 bg-green-600 hover:bg-green-500"
           >
             Agreement
-          </button>
+          </button> */}
         </div>
       </div>
     </motion.div>
